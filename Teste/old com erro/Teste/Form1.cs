@@ -45,14 +45,14 @@ namespace Teste
             //Data movimento 
             var datainicio = dateTimePicker1.Value;
             string datainicioFormat = "1" + dateTimePicker1.Value.ToString("yyMMdd");
-            
+
             var datafim = dateTimePicker2.Value;
             string datafimFormat = "1" + dateTimePicker2.Value.ToString("yyMMdd");
-            
-            //Data Recebimento 
-             string recin = "1" + dateTimePicker3.Value.ToString("yyMMdd");
 
-            
+            //Data Recebimento 
+            string recin = "1" + dateTimePicker3.Value.ToString("yyMMdd");
+
+
             string recfim = "1" + dateTimePicker4.Value.ToString("yyMMdd");
             //MessageBox.Show($"{recin}");
 
@@ -95,7 +95,7 @@ namespace Teste
 
             // codigo fornecedor 
             string codfor = textBox1.Text;
-            // MessageBox.Show($"{ codfor}");
+            MessageBox.Show($"{codfor}");
 
             //usuario
             string usuario = textBox2.Text;
@@ -162,11 +162,11 @@ namespace Teste
                     "\r\n  --and PED.EXT_COD_CPO_P is null" +
                     "\r\n  and PED.EXT_COD_PRO_P <> 0" +
                     "\r\n  AND PED.EXT_TIP_MOV_2   IN (1)" +
-                    "\r\n  AND PED.EXT_DAT_MOV_2  between "+datainicioFormat+" and "+datafimFormat+" --datamovimentação" +
-                    "\r\n  AND not_dta_agenda BETWEEN "+recin+" and "+recfim+" --datarecebimento" +
+                    "\r\n  AND PED.EXT_DAT_MOV_2  between " + datainicioFormat + " and " + datafimFormat + " --datamovimentação" +
+                    "\r\n  AND not_dta_agenda BETWEEN " + recin + " and " + recfim + " --recebimento" +
                     "\r\n  AND PED.EXT_TIP_MOV_P = 1" +
-                    "\r\n  and EXT_COD_FOR_3 = 12629--fornecedor" +
-                    "\r\n  AND PED.EXT_COD_LOJ_2   in ("+fil+")--filial" +
+                    "\r\n  and EXT_COD_FOR_3 = " + codfor + "--fornecedor" +
+                    "\r\n  AND PED.EXT_COD_LOJ_2   in (1,2,3)--filial" +
                     "\r\n  AND EXT_USUARIO_4 LIKE '%ASSC%'--usuario" +
                     "\r\n  AND PED.EXT_TIP_MOV_P = 1" +
                     "\r\n  AND LOJ.TIP_CODIGO      = PED.EXT_COD_LOJ_P" +
@@ -236,13 +236,13 @@ namespace Teste
                     "\r\n  and PED.EXT_COD_CPO_P in (11,12,18)  " +
                     "\r\n   and PED.EXT_COD_PRO_P = git_cod_item " +
                     "\r\n  AND PED.EXT_TIP_MOV_2   IN (2)" +
-                    "\r\n  AND PED.EXT_DAT_MOV_2  between " + datainicioFormat + " and " + datafimFormat + " --datamovimentação" +
-                    "\r\n  AND not_dta_agenda BETWEEN " + recin + " and " + recfim + " --datarecebimento" +
+                    "\r\n  AND PED.EXT_DAT_MOV_2  between " + datainicioFormat + " and " + datafimFormat + " --movimentação" +
+                    "\r\n  AND not_dta_agenda BETWEEN " + recin + " and " + recfim + " --recebimento" +
                     "\r\n  AND PED.EXT_TIP_MOV_P = 1" +
-                    "\r\n  and EXT_COD_FOR_3 = 12629 --fornecedor" +
+                    "\r\n  and EXT_COD_FOR_3 = " + codfor + " --fornecedor" +
                     "\r\n  AND PED.EXT_TIP_MOV_P = 1" +
                     "\r\n  AND EXT_USUARIO_4 LIKE ' %ASSC%'--usuaario" +
-                    "\r\n  AND PED.EXT_COD_LOJ_2   in ("+fil+")--filial" +
+                    "\r\n  AND PED.EXT_COD_LOJ_2   in (1,2,3)--filial" +
                     "\r\n  AND LOJ.TIP_CODIGO      = PED.EXT_COD_LOJ_P" +
                     "\r\n  AND FORN.TIP_CODIGO     = PED.EXT_COD_FOR_3" +
                     "\r\n  and not_nped_1 = PED.EXT_NUM_PED_P" +
@@ -286,6 +286,6 @@ namespace Teste
 
         }
 
-       
+
     }
 }

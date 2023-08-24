@@ -159,6 +159,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(109, 20);
             this.textBox2.TabIndex = 17;
+            this.toolTip1.SetToolTip(this.textBox2, "Com Letra maiuscula");
             // 
             // label7
             // 
@@ -318,4 +319,3 @@
         private System.Windows.Forms.TextBox textBox2;
     }
 }
-
