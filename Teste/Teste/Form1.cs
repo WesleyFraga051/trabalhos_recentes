@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
 using Microsoft.SqlServer.Server;
@@ -99,6 +100,8 @@ namespace Teste
 
             //usuario
             string usuario = textBox2.Text;
+            string usuario2 = usuario.ToUpper();
+
 
 
             using (OracleConnection con = new OracleConnection(conStr))
@@ -167,7 +170,7 @@ namespace Teste
                     "\r\n  AND PED.EXT_TIP_MOV_P = 1" +
                     "\r\n  and EXT_COD_FOR_3 = 12629--fornecedor" +
                     "\r\n  AND PED.EXT_COD_LOJ_2   in ("+fil+")--filial" +
-                    "\r\n  AND EXT_USUARIO_4 LIKE '%ASSC%'--usuario" +
+                    "\r\n  AND EXT_USUARIO_4 LIKE    :usuario  " +
                     "\r\n  AND PED.EXT_TIP_MOV_P = 1" +
                     "\r\n  AND LOJ.TIP_CODIGO      = PED.EXT_COD_LOJ_P" +
                     "\r\n  AND FORN.TIP_CODIGO     = PED.EXT_COD_FOR_3" +
@@ -241,8 +244,8 @@ namespace Teste
                     "\r\n  AND PED.EXT_TIP_MOV_P = 1" +
                     "\r\n  and EXT_COD_FOR_3 = 12629 --fornecedor" +
                     "\r\n  AND PED.EXT_TIP_MOV_P = 1" +
-                    "\r\n  AND EXT_USUARIO_4 LIKE ' %ASSC%'--usuaario" +
-                    "\r\n  AND PED.EXT_COD_LOJ_2   in ("+fil+")--filial" +
+                    "\r\n  AND EXT_USUARIO_4 LIKE    :usuario  " +
+                    "\r\n  AND PED.EXT_COD_LOJ_2   in (" +fil+")--filial" +
                     "\r\n  AND LOJ.TIP_CODIGO      = PED.EXT_COD_LOJ_P" +
                     "\r\n  AND FORN.TIP_CODIGO     = PED.EXT_COD_FOR_3" +
                     "\r\n  and not_nped_1 = PED.EXT_NUM_PED_P" +
@@ -253,11 +256,22 @@ namespace Teste
                     "\r\n                    AND NROPED_CARF = PED.EXT_NUM_PED_2) OR PED.EXT_COD_PRO_P = 0)" +
                     "\r\n  --ORDER BY EXT_COD_LOJ_P ASC, EXT_NUM_PED_P ASC, EXT_DAT_MOV_P ASC, EXT_TIP_MOV_P ASC, EXT_COD_PRO_P ASC, EXT_COD_CPO_P ASC, EXT_HOR_MOV_P ASC\r\n  \r\n";
 
-                OracleDataAdapter adapter = new OracleDataAdapter(sqlQuery, con);
-                DataTable dt = new DataTable();
-                adapter.Fill(dt);
+                
 
-                dataGridView1.DataSource = dt; // Configurar o DataGridView para exibir os dados
+                using (OracleCommand command = new OracleCommand(sqlQuery, con))
+                {
+                    command.Parameters.Add("usuario", OracleDbType.Varchar2).Value = "%" + usuario2 + "%";
+
+
+
+                    using (OracleDataAdapter adapter = new OracleDataAdapter(command))
+                    {
+                        DataTable dt = new DataTable();
+                        adapter.Fill(dt);
+
+                        dataGridView1.DataSource = dt; // Configurar o DataGridView para exibir os dados
+                    }
+                }
             }
         }
 
@@ -289,3 +303,12 @@ namespace Teste
        
     }
 }
+
+
+
+
+
+
+
+//Codigo Criado Por Wesley Fraga 
+//logica e ajuste Lucas Brasil
