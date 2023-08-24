@@ -95,7 +95,7 @@ namespace Teste
 
             // codigo fornecedor 
             string codfor = textBox1.Text;
-            // MessageBox.Show($"{ codfor}");
+             MessageBox.Show($"{ codfor}");
 
             //usuario
             string usuario = textBox2.Text;
