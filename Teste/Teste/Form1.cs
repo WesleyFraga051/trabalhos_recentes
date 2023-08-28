@@ -14,6 +14,9 @@ using System.Collections.Generic;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading;
+using DocumentFormat.OpenXml.Drawing;
+using DocumentFormat.OpenXml.Spreadsheet;
 
 namespace Teste
 {
@@ -22,6 +25,7 @@ namespace Teste
     {
         string conStr = "User Id=rmsprod;Password=rmsprod;Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=10.1.1.14)(PORT=1521)))(CONNECT_DATA=(SID=sandbox)))";
 
+        Thread t1;
         public Form1()
         {
             InitializeComponent();
@@ -38,10 +42,7 @@ namespace Teste
 
 
         }
-        class Pedidos
-        {
-
-        }
+     
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
@@ -53,31 +54,44 @@ namespace Teste
             {
                 button2_Click(sender, e);
             }
+            else if (e.KeyCode == Keys.F6)
+            {
+                button3_Click_1(sender, e);
+            }
+            else if (e.KeyCode == Keys.F9)
+            {
+                button5_Click(sender, e);
+            }
             else if (e.KeyCode == Keys.F10)
             {
                 button4_Click(sender, e);
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        class Pedidos
+        {
+            private DateTimePicker dateTimePicker1;
+            private DateTimePicker dateTimePicker2;
+            private DateTimePicker dateTimePicker3;
+            private DateTimePicker dateTimePicker4;
+            private ComboBox comboBox1;
+            private ComboBox comboBox2;
+            private TextBox textBox1;
+            private TextBox textBox2;
+        }
+        public void Variavel(out string datainicioFormat, out string datafimFormat,out int situacao, out int fil,out string codfor, out string usuario2)
         {
             //Data movimento 
-            var datainicio = dateTimePicker1.Value;
-            string datainicioFormat = "1" + dateTimePicker1.Value.ToString("yyMMdd");
+            
+             datainicioFormat = "1" + dateTimePicker1.Value.ToString("yyMMdd");
 
-            var datafim = dateTimePicker2.Value;
-            string datafimFormat = "1" + dateTimePicker2.Value.ToString("yyMMdd");
+            
+             datafimFormat = "1" + dateTimePicker2.Value.ToString("yyMMdd");
 
-            //Data Recebimento 
-            string recin = "1" + dateTimePicker3.Value.ToString("yyMMdd");
-
-
-            string recfim = "1" + dateTimePicker4.Value.ToString("yyMMdd");
-            //MessageBox.Show($"{recin}");
-
+            
             //Situação Alterado,Incluido,Baixado,Cancelado
             string selectedItem = comboBox1.SelectedItem.ToString();
-            int situacao = 0;
+             situacao = 0;
             if (selectedItem == "Incluido")
             {
                 situacao = 1;
@@ -95,7 +109,7 @@ namespace Teste
 
             //FILIAIS
             string filial = comboBox2.SelectedItem.ToString();
-            int fil = 0;
+             fil = 0;
             if (filial == "19 CD")
             {
                 fil = 1;
@@ -113,12 +127,19 @@ namespace Teste
 
 
             // codigo fornecedor 
-            string codfor = textBox1.Text;
+             codfor = textBox1.Text;
             // MessageBox.Show($"{ codfor}");
 
             //usuario
             string usuario = textBox2.Text;
-            string usuario2 = usuario.ToUpper();
+             usuario2 = usuario.ToUpper();
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string datainicioFormat, datafimFormat;
+            int situacao, fil;
+            string codfor, usuario2;
+            Variavel(out datainicioFormat, out datafimFormat,  out situacao, out fil,out codfor, out usuario2);
 
 
 
@@ -184,7 +205,7 @@ namespace Teste
                     "\r\n  and PED.EXT_COD_PRO_P <> 0" +
                     "\r\n  AND PED.EXT_TIP_MOV_2   IN (1)" +
                     "\r\n  AND PED.EXT_DAT_MOV_2  between " + datainicioFormat + " and " + datafimFormat + " --datamovimentação" +
-                    "\r\n  AND not_dta_agenda BETWEEN " + recin + " and " + recfim + " --datarecebimento" +
+                    //"\r\n  AND not_dta_agenda BETWEEN " + recin + " and " + recfim + " --datarecebimento" +
                     "\r\n  AND PED.EXT_TIP_MOV_P = 1" +
                     "\r\n  and EXT_COD_FOR_3 = 12629--fornecedor" +
                     "\r\n  AND PED.EXT_COD_LOJ_2   in (" + fil + ")--filial" +
@@ -258,7 +279,7 @@ namespace Teste
                     "\r\n   and PED.EXT_COD_PRO_P = git_cod_item " +
                     "\r\n  AND PED.EXT_TIP_MOV_2   IN (2)" +
                     "\r\n  AND PED.EXT_DAT_MOV_2  between " + datainicioFormat + " and " + datafimFormat + " --datamovimentação" +
-                    "\r\n  AND not_dta_agenda BETWEEN " + recin + " and " + recfim + " --datarecebimento" +
+                    //"\r\n  AND not_dta_agenda BETWEEN " + recin + " and " + recfim + " --datarecebimento" +
                     "\r\n  AND PED.EXT_TIP_MOV_P = 1" +
                     "\r\n  and EXT_COD_FOR_3 = 12629 --fornecedor" +
                     "\r\n  AND PED.EXT_TIP_MOV_P = 1" +
@@ -400,6 +421,25 @@ namespace Teste
                 }
             }
         }
+
+
+        private Form2 form2;
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            this.Hide(); // Esconde o Form1
+            if (form2 == null || form2.IsDisposed)
+            {
+                form2 = new Form2(); // Cria uma nova instância do Form2, se ainda não existe ou foi fechada
+                form2.FormClosed += Form2_FormClosed; // Manipula o evento de fechamento do Form2
+            }
+            form2.Show(); // Mostra o Form2
+        }
+        private void Form2_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Show(); // Mostra o Form1 novamente quando o Form2 for fechado
+        }
+        
     }
 }
 
