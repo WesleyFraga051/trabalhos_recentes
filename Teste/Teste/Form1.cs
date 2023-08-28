@@ -1,14 +1,23 @@
-﻿using System;
+﻿/////////////Systema dessenvolvido Por Wesley fraga e colaboração de Lucas Brasil 08/23
+
+using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
 using Microsoft.SqlServer.Server;
 using Oracle.ManagedDataAccess.Client;
+using System.IO;
+using System.Text;
+using ClosedXML.Excel;
+using System.Collections.Generic;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
+using System.Diagnostics;
+using System.Linq;
 
 namespace Teste
 {
+
     public partial class Form1 : Form
     {
         string conStr = "User Id=rmsprod;Password=rmsprod;Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=10.1.1.14)(PORT=1521)))(CONNECT_DATA=(SID=sandbox)))";
@@ -29,6 +38,11 @@ namespace Teste
 
 
         }
+        class Pedidos
+        {
+
+        }
+
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F4)
@@ -39,21 +53,25 @@ namespace Teste
             {
                 button2_Click(sender, e);
             }
-
+            else if (e.KeyCode == Keys.F10)
+            {
+                button4_Click(sender, e);
+            }
         }
+
         private void button1_Click(object sender, EventArgs e)
         {
             //Data movimento 
             var datainicio = dateTimePicker1.Value;
             string datainicioFormat = "1" + dateTimePicker1.Value.ToString("yyMMdd");
-            
+
             var datafim = dateTimePicker2.Value;
             string datafimFormat = "1" + dateTimePicker2.Value.ToString("yyMMdd");
-            
-            //Data Recebimento 
-             string recin = "1" + dateTimePicker3.Value.ToString("yyMMdd");
 
-            
+            //Data Recebimento 
+            string recin = "1" + dateTimePicker3.Value.ToString("yyMMdd");
+
+
             string recfim = "1" + dateTimePicker4.Value.ToString("yyMMdd");
             //MessageBox.Show($"{recin}");
 
@@ -165,11 +183,11 @@ namespace Teste
                     "\r\n  --and PED.EXT_COD_CPO_P is null" +
                     "\r\n  and PED.EXT_COD_PRO_P <> 0" +
                     "\r\n  AND PED.EXT_TIP_MOV_2   IN (1)" +
-                    "\r\n  AND PED.EXT_DAT_MOV_2  between "+datainicioFormat+" and "+datafimFormat+" --datamovimentação" +
-                    "\r\n  AND not_dta_agenda BETWEEN "+recin+" and "+recfim+" --datarecebimento" +
+                    "\r\n  AND PED.EXT_DAT_MOV_2  between " + datainicioFormat + " and " + datafimFormat + " --datamovimentação" +
+                    "\r\n  AND not_dta_agenda BETWEEN " + recin + " and " + recfim + " --datarecebimento" +
                     "\r\n  AND PED.EXT_TIP_MOV_P = 1" +
                     "\r\n  and EXT_COD_FOR_3 = 12629--fornecedor" +
-                    "\r\n  AND PED.EXT_COD_LOJ_2   in ("+fil+")--filial" +
+                    "\r\n  AND PED.EXT_COD_LOJ_2   in (" + fil + ")--filial" +
                     "\r\n  AND EXT_USUARIO_4 LIKE    :usuario  " +
                     "\r\n  AND PED.EXT_TIP_MOV_P = 1" +
                     "\r\n  AND LOJ.TIP_CODIGO      = PED.EXT_COD_LOJ_P" +
@@ -245,7 +263,7 @@ namespace Teste
                     "\r\n  and EXT_COD_FOR_3 = 12629 --fornecedor" +
                     "\r\n  AND PED.EXT_TIP_MOV_P = 1" +
                     "\r\n  AND EXT_USUARIO_4 LIKE    :usuario  " +
-                    "\r\n  AND PED.EXT_COD_LOJ_2   in (" +fil+")--filial" +
+                    "\r\n  AND PED.EXT_COD_LOJ_2   in (" + fil + ")--filial" +
                     "\r\n  AND LOJ.TIP_CODIGO      = PED.EXT_COD_LOJ_P" +
                     "\r\n  AND FORN.TIP_CODIGO     = PED.EXT_COD_FOR_3" +
                     "\r\n  and not_nped_1 = PED.EXT_NUM_PED_P" +
@@ -256,7 +274,7 @@ namespace Teste
                     "\r\n                    AND NROPED_CARF = PED.EXT_NUM_PED_2) OR PED.EXT_COD_PRO_P = 0)" +
                     "\r\n  --ORDER BY EXT_COD_LOJ_P ASC, EXT_NUM_PED_P ASC, EXT_DAT_MOV_P ASC, EXT_TIP_MOV_P ASC, EXT_COD_PRO_P ASC, EXT_COD_CPO_P ASC, EXT_HOR_MOV_P ASC\r\n  \r\n";
 
-                
+
 
                 using (OracleCommand command = new OracleCommand(sqlQuery, con))
                 {
@@ -274,6 +292,7 @@ namespace Teste
                 }
             }
         }
+
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -299,11 +318,90 @@ namespace Teste
         {
 
         }
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            ExportTotxt();
+        }
+        private void button4_Click(object sender, EventArgs e)
+        {
+            ExportToExcel();
+        }
 
-       
+        private void ExportTotxt()
+        {
+            if (dataGridView1 == null || dataGridView1.Rows.Count == 0)
+            {
+                MessageBox.Show("Não há dados para exportar.");
+                return;
+            }
+            // Abrir janela de diálogo para escolher onde salvar o arquivo
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.Filter = "Pedidos alterados (*.txt)|*.txt";
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    // Escrever os dados no arquivo CSV
+                    using (var writer = new StreamWriter(saveFileDialog.FileName, false, Encoding.UTF8))
+                    {
+                        // Escrever o cabeçalho
+                        writer.WriteLine(string.Join(",", dataGridView1.Columns.Cast<DataGridViewColumn>().Select(column => column.HeaderText)));
+
+                        // Escrever as linhas de dados
+                        foreach (DataGridViewRow row in dataGridView1.Rows)
+                        {
+                            writer.WriteLine(string.Join(",", row.Cells.Cast<DataGridViewCell>().Select(cell => cell.Value)));
+                        }
+                    }
+
+                    MessageBox.Show("Dados exportados para TXT com sucesso!");
+                }
+            }
+        }
+
+        private void ExportToExcel()
+        {
+            if (dataGridView1 == null || dataGridView1.Rows.Count == 0)
+            {
+                MessageBox.Show("Não há dados para exportar.");
+                return;
+            }
+
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.Filter = "Arquivo Excel (*.xlsx)|*.xlsx";
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    using (var workbook = new XLWorkbook())
+                    {
+                        var worksheet = workbook.Worksheets.Add("Dados");
+
+                        // Escrever os cabeçalhos das colunas
+                        for (int col = 0; col < dataGridView1.Columns.Count; col++)
+                        {
+                            worksheet.Cell(1, col + 1).Value = dataGridView1.Columns[col].HeaderText;
+                        }
+
+                        // Escrever as linhas de dados
+                        for (int row = 0; row < dataGridView1.Rows.Count; row++)
+                        {
+                            for (int col = 0; col < dataGridView1.Columns.Count; col++)
+                            {
+                                var cellValue = dataGridView1.Rows[row].Cells[col].Value;
+                                if (cellValue != null)
+                                {
+                                    worksheet.Cell(row + 2, col + 1).Value = cellValue.ToString();
+                                }
+                            }
+                        }
+
+                        workbook.SaveAs(saveFileDialog.FileName);
+                        MessageBox.Show("Dados exportados para Excel com sucesso!");
+                    }
+                }
+            }
+        }
     }
 }
-
 
 
 
