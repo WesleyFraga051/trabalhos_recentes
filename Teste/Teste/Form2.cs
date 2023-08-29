@@ -15,6 +15,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading;
+using DocumentFormat.OpenXml.Drawing;
 
 namespace Teste
 {
@@ -205,11 +206,10 @@ namespace Teste
                     "\r\n  AND PED.EXT_TIP_MOV_2   IN (1)" +
                     //"\r\n  AND PED.EXT_DAT_MOV_2  between " + datainicioFormat + " and " + datafimFormat + " --datamovimentação" +
                     "\r\n  AND not_dta_agenda BETWEEN " + recin + " and " + recfim + " --datarecebimento" +
-                    "\r\n  AND PED.EXT_TIP_MOV_P = 1" +
+                    "\r\n  AND PED.EXT_TIP_MOV_P = ("+ situacao+")" +
                     "\r\n  and EXT_COD_FOR_3 = 12629--fornecedor" +
                     "\r\n  AND PED.EXT_COD_LOJ_2   in (" + fil + ")--filial" +
                     "\r\n  AND EXT_USUARIO_4 LIKE    :usuario  " +
-                    "\r\n  AND PED.EXT_TIP_MOV_P = 1" +
                     "\r\n  AND LOJ.TIP_CODIGO      = PED.EXT_COD_LOJ_P" +
                     "\r\n  AND FORN.TIP_CODIGO     = PED.EXT_COD_FOR_3" +
                     "\r\n  and not_nped_1 = PED.EXT_NUM_PED_P" +
@@ -279,9 +279,8 @@ namespace Teste
                     "\r\n  AND PED.EXT_TIP_MOV_2   IN (2)" +
                     //"\r\n  AND PED.EXT_DAT_MOV_2  between " + datainicioFormat + " and " + datafimFormat + " --datamovimentação" +
                     "\r\n  AND not_dta_agenda BETWEEN " + recin + " and " + recfim + " --datarecebimento" +
-                    "\r\n  AND PED.EXT_TIP_MOV_P = 1" +
+                    "\r\n AND PED.EXT_TIP_MOV_P = ("+ situacao+")" +
                     "\r\n  and EXT_COD_FOR_3 = 12629 --fornecedor" +
-                    "\r\n  AND PED.EXT_TIP_MOV_P = 1" +
                     "\r\n  AND EXT_USUARIO_4 LIKE    :usuario  " +
                     "\r\n  AND PED.EXT_COD_LOJ_2   in (" + fil + ")--filial" +
                     "\r\n  AND LOJ.TIP_CODIGO      = PED.EXT_COD_LOJ_P" +
