@@ -228,7 +228,7 @@
             this.dateTimePicker3.Name = "dateTimePicker3";
             this.dateTimePicker3.Size = new System.Drawing.Size(81, 20);
             this.dateTimePicker3.TabIndex = 9;
-            this.dateTimePicker3.Value = new System.DateTime(2023, 8, 23, 0, 0, 0, 0);
+            this.dateTimePicker3.Value = new System.DateTime(2023, 8, 22, 0, 0, 0, 0);
             // 
             // label4
             // 
@@ -263,7 +263,7 @@
             this.Controls.Add(this.Btsair);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form2";
-            this.Text = "Form2";
+            this.Text = "Pedidos incluidos e alterados por Data de recebimento";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

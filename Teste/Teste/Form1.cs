@@ -80,6 +80,8 @@ namespace Teste
         }
         public void Variavel(out string datainicioFormat, out string datafimFormat,out int situacao, out int fil,out string codfor, out string usuario2)
         {
+             
+            
             //Data movimento 
             
              datainicioFormat = "1" + dateTimePicker1.Value.ToString("yyMMdd");
@@ -123,26 +125,37 @@ namespace Teste
             //MessageBox.Show($"Valor numérico associado: {situacao}");
 
             //FILIAIS
-            string filial = comboBox2.SelectedItem.ToString();
-             fil = 0;
-            if (filial == "19 CD")
+            string filial = comboBox2?.SelectedItem?.ToString();
+
+            fil = 0;
+
+            if (filial != null)
             {
-                fil = 1;
+                if (filial == "19 CD")
+                {
+                    fil = 1;
+                }
+                else if (filial == "27 Mercado")
+                {
+                    fil = 2;
+                }
+                else if (filial == "35 Atacado")
+                {
+                    fil = 3;
+                }
+                else
+                {
+                    fil = 5;
+                }
             }
-            else if (filial == "27 Mercado")
+            else
             {
-                fil = 2;
             }
-            else if (filial == "35 Atacado")
-            {
-                fil = 3;
-            }
-            else { fil = 5; }
 
 
 
-            // codigo fornecedor 
-             codfor = textBox1.Text;
+                // codigo fornecedor 
+                codfor = textBox1.Text;
             // MessageBox.Show($"{ codfor}");
 
             //usuario
@@ -310,156 +323,158 @@ namespace Teste
 
             //sem usuario
             if (textBox2.Text == "" && textBox1.Text != "" && comboBox1.Text != "" && comboBox2.Text != "")
-                {
-                    sqlQuery = "SELECT DISTINCT PED.EXT_COD_LOJ_P || DAC(PED.EXT_COD_LOJ_P) || '-' || LOJ.TIP_NOME_FANTASIA AS LOJA," +
-                    "\r\n       PED.EXT_COD_FOR_3 || DAC(PED.EXT_COD_FOR_3) || '-' || FORN.TIP_NOME_FANTASIA AS FORNECEDOR," +
-                    "\r\n       PED.EXT_NUM_PED_P || '-' ||DAC( PED.EXT_NUM_PED_P) AS        PEDIDOS," +
-                    "\r\n       rms7to_date(PED.EXT_DAT_MOV_P) AS DATA_MOV," +
-                    "\r\n       rms7to_date(not_dta_agenda) DATA_RECEBIMENTO," +
-                    "\r\n       not_nota as nota," +
-                    "\r\n       (CASE PED.EXT_TIP_MOV_P" +
-                    "\r\n       WHEN 1 THEN 'INCLUIDO'" +
-                    "\r\n       WHEN 2 THEN 'ALTERADO'" +
-                    "\r\n       WHEN 3 THEN 'BAIXADO'" +
-                    "\r\n       WHEN 4 THEN 'CANCELADO'" +
-                    "\r\n       ELSE ' '" +
-                    "\r\n       END) AS TIPO_MOV," +
-                    "\r\n       PED.EXT_COD_PRO_P || '-' || DAC(PED.EXT_COD_PRO_P) AS PRODUTO," +
-                    "\r\n       git_DESCRICAO AS DESCRICAO," +
-                    "\r\n       SUBSTR(TRIM(TO_CHAR(PED.EXT_HOR_MOV_P,'000000')),1,2) || ':' || SUBSTR(TRIM(TO_CHAR(PED.EXT_HOR_MOV_P,'000000')),3,2)|| ':' || SUBSTR(TRIM(TO_CHAR(PED.EXT_HOR_MOV_P,'000000')),5,2) AS HORA," +
-                    "\r\n       PED.EXT_USUARIO_4," +
-                    "\r\n       DECODE(NVL(LENGTH(TRIM(TRANSLATE(EXT_DE_PARA, '+-0123456789.', ' '))),0), 0," +
-                    "\r\n              DECODE(PED.EXT_TIP_MOV_P, 2, " +
-                    "\r\n              DECODE(PED.EXT_COD_CPO_P, 12, " +
-                    "\r\n                     ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,1,13))) || ',' || ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,14,2))), " +
-                    "\r\n                     ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,1,15)))), ''), '') AS ANTERIOR," +
-                    "\r\n       DECODE(NVL(LENGTH(TRIM(TRANSLATE(EXT_DE_PARA, '+-0123456789.', ' '))),0), 0," +
-                    "\r\n       DECODE(PED.EXT_TIP_MOV_P, 2," +
-                    "\r\n              DECODE(PED.EXT_COD_CPO_P, 12, " +
-                    "\r\n                      ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,16,13))) || ',' || ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,29,2)))," +
-                    "\r\n                      ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,16,15)))), ''), '') AS ATUAL, " +
-                    "\r\n       DECODE(PED.EXT_TIP_MOV_P, 2," +
-                    "\r\n       (CASE PED.EXT_COD_CPO_P" +
-                    "\r\n        WHEN 1 THEN 'CND PGTO'" +
-                    "\r\n        WHEN 2 THEN 'DT INICIAL'" +
-                    "\r\n        WHEN 3 THEN 'DT FIM'" +
-                    "\r\n        WHEN 4 THEN 'PGTO'" +
-                    "\r\n        WHEN 5 THEN 'FRETE'" +
-                    "\r\n        WHEN 6 THEN 'TRANSP'" +
-                    "\r\n        WHEN 7 THEN 'OBS'" +
-                    "\r\n        WHEN 10 THEN 'EMB'" +
-                    "\r\n        WHEN 11 THEN 'QTD PED'" +
-                    "\r\n        WHEN 12 THEN 'CUSTO FORN'" +
-                    "\r\n        WHEN 13 THEN 'DESCONTO'" +
-                    "\r\n        WHEN 14 THEN 'IPI'" +
-                    "\r\n        WHEN 15 THEN 'IPI VALOR'" +
-                    "\r\n        WHEN 18 THEN 'DESP. ACESS.'  " +
-                    "\r\n        WHEN 19 THEN 'COMPRADOR'  " +
-                    "\r\n        WHEN 20 THEN 'CUSTO TOT.'  " +
-                    "\r\n        ELSE 'OUTRO'" +
-                    "\r\n        END), " +
-                    "\r\n               ' ') AS CAMPO_ALTERADO, " +
-                    "\r\n        (SELECT 1 FROM AG1FLPED " +
-                    "\r\n          WHERE CLOJ_CARF   = PED.EXT_COD_LOJ_2" +
-                    "\r\n            AND CODFOR_CARF = PED.EXT_COD_FOR_3" +
-                    "\r\n            AND NROPED_CARF = PED.EXT_NUM_PED_2) AS SITUACAO" +
-                    "\r\nFROM AG1EPEDI PED, AA2CTIPO LOJ, AA2CTIPO FORN, AG2CAPNT, AA3CITEM" +
-                    "\r\nWHERE 1 = 1\r\n  and PED.EXT_COD_PRO_P = git_cod_item  " +
-                    "\r\n  --and PED.EXT_COD_CPO_P is null" +
-                    "\r\n  and PED.EXT_COD_PRO_P <> 0" +
-                    "\r\n  AND PED.EXT_TIP_MOV_2   IN (1)" +
-                    "\r\n  AND PED.EXT_DAT_MOV_2  between " + datainicioFormat + " and " + datafimFormat + " --datamovimentação" +
-                    //"\r\n  AND not_dta_agenda BETWEEN " + recin + " and " + recfim + " --datarecebimento" +
-                    "\r\n  AND PED.EXT_TIP_MOV_P = (" + situacao + ") " +
-                    "\r\n  and EXT_COD_FOR_3 = (" +codfor+")--fornecedor" +
-                    "\r\n  AND PED.EXT_COD_LOJ_2   in (" + fil + ")--filial" +
-                    //"\r\n  AND EXT_USUARIO_4 LIKE    :usuario  " +
-                    "\r\n  AND LOJ.TIP_CODIGO      = PED.EXT_COD_LOJ_P" +
-                    "\r\n  AND FORN.TIP_CODIGO     = PED.EXT_COD_FOR_3" +
-                    "\r\n  and not_nped_1 = PED.EXT_NUM_PED_P" +
-                    "\r\n  --and PED.EXT_DAT_MOV_P = not_dta_agenda" +
-                    "\r\n  AND (NOT EXISTS (SELECT 1 FROM AG1FLPED " +
-                    "\r\n                  WHERE CLOJ_CARF   = PED.EXT_COD_LOJ_2" +
-                    "\r\n                    AND CODFOR_CARF = PED.EXT_COD_FOR_3" +
-                    "\r\n                    AND NROPED_CARF = PED.EXT_NUM_PED_2) OR PED.EXT_COD_PRO_P = 0)" +
-                    "\r\n  --ORDER BY EXT_COD_LOJ_P ASC, EXT_NUM_PED_P ASC, EXT_DAT_MOV_P ASC, EXT_TIP_MOV_P ASC, EXT_COD_PRO_P ASC, EXT_COD_CPO_P ASC, EXT_HOR_MOV_P ASC" +
-                    "\r\n union all" +
-                    "\r\n SELECT PED.EXT_COD_LOJ_P || DAC(PED.EXT_COD_LOJ_P) || '-' || LOJ.TIP_NOME_FANTASIA AS LOJA," +
-                    "\r\n       PED.EXT_COD_FOR_3 || DAC(PED.EXT_COD_FOR_3) || '-' || FORN.TIP_NOME_FANTASIA AS FORNECEDOR," +
-                    "\r\n       PED.EXT_NUM_PED_P || '-' ||DAC( PED.EXT_NUM_PED_P) AS        PEDIDOS," +
-                    "\r\n       rms7to_date(PED.EXT_DAT_MOV_P) AS DATA_MOV," +
-                    "\r\n       rms7to_date(not_dta_agenda) DATA_RECEBIMENTO," +
-                    "\r\n       not_nota as nota," +
-                    "\r\n       (CASE PED.EXT_TIP_MOV_P" +
-                    "\r\n       WHEN 1 THEN 'INCLUIDO'" +
-                    "\r\n       WHEN 2 THEN 'ALTERADO'" +
-                    "\r\n       WHEN 3 THEN 'BAIXADO'" +
-                    "\r\n       WHEN 4 THEN 'CANCELADO'" +
-                    "\r\n       ELSE ' '" +
-                    "\r\n       END) AS TIPO_MOV," +
-                    "\r\n       PED.EXT_COD_PRO_P || '-' || DAC(PED.EXT_COD_PRO_P) AS PRODUTO," +
-                    "\r\n       git_DESCRICAO AS DESCRICAO," +
-                    "\r\n       SUBSTR(TRIM(TO_CHAR(PED.EXT_HOR_MOV_P,'000000')),1,2) || ':' || SUBSTR(TRIM(TO_CHAR(PED.EXT_HOR_MOV_P,'000000')),3,2)|| ':' || SUBSTR(TRIM(TO_CHAR(PED.EXT_HOR_MOV_P,'000000')),5,2) AS HORA," +
-                    "\r\n       PED.EXT_USUARIO_4," +
-                    "\r\n       DECODE(NVL(LENGTH(TRIM(TRANSLATE(EXT_DE_PARA, '+-0123456789.', ' '))),0), 0," +
-                    "\r\n              DECODE(PED.EXT_TIP_MOV_P, 2, " +
-                    "\r\n              DECODE(PED.EXT_COD_CPO_P, 12, " +
-                    "\r\n                     ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,1,13))) || ',' || ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,14,2))), " +
-                    "\r\n                     ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,1,15)))), ''), '') AS ANTERIOR," +
-                    "\r\n       DECODE(NVL(LENGTH(TRIM(TRANSLATE(EXT_DE_PARA, '+-0123456789.', ' '))),0), 0," +
-                    "\r\n       DECODE(PED.EXT_TIP_MOV_P, 2," +
-                    "\r\n              DECODE(PED.EXT_COD_CPO_P, 12, " +
-                    "\r\n                      ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,16,13))) || ',' || ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,29,2)))," +
-                    "\r\n                      ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,16,15)))), ''), '') AS ATUAL, " +
-                    "\r\n       DECODE(PED.EXT_TIP_MOV_P, 2," +
-                    "\r\n       (CASE PED.EXT_COD_CPO_P" +
-                    "\r\n        WHEN 1 THEN 'CND PGTO'" +
-                    "\r\n        WHEN 2 THEN 'DT INICIAL'" +
-                    "\r\n        WHEN 3 THEN 'DT FIM'" +
-                    "\r\n        WHEN 4 THEN 'PGTO'" +
-                    "\r\n        WHEN 5 THEN 'FRETE'" +
-                    "\r\n        WHEN 6 THEN 'TRANSP'" +
-                    "\r\n        WHEN 7 THEN 'OBS'" +
-                    "\r\n        WHEN 10 THEN 'EMB'" +
-                    "\r\n        WHEN 11 THEN 'QTD PED'" +
-                    "\r\n        WHEN 12 THEN 'CUSTO FORN'" +
-                    "\r\n        WHEN 13 THEN 'DESCONTO'" +
-                    "\r\n        WHEN 14 THEN 'IPI'" +
-                    "\r\n        WHEN 15 THEN 'IPI VALOR'" +
-                    "\r\n        WHEN 18 THEN 'DESP. ACESS.'  " +
-                    "\r\n        WHEN 19 THEN 'COMPRADOR'  " +
-                    "\r\n        WHEN 20 THEN 'CUSTO TOT.'  " +
-                    "\r\n        ELSE 'OUTRO'" +
-                    "\r\n        END), " +
-                    "\r\n        ' ') AS CAMPO_ALTERADO, " +
-                    "\r\n        (SELECT 1 FROM AG1FLPED " +
-                    "\r\n          WHERE CLOJ_CARF   = PED.EXT_COD_LOJ_2" +
-                    "\r\n            AND CODFOR_CARF = PED.EXT_COD_FOR_3" +
-                    "\r\n            AND NROPED_CARF = PED.EXT_NUM_PED_2) AS SITUACAO" +
-                    "\r\nFROM AG1EPEDI PED, AA2CTIPO LOJ, AA2CTIPO FORN, AG2CAPNT, AA3CITEM" +
-                    "\r\nWHERE 1 = 1" +
-                    "\r\n  and PED.EXT_COD_CPO_P in (11,12,18)  " +
-                    "\r\n   and PED.EXT_COD_PRO_P = git_cod_item " +
-                    "\r\n  AND PED.EXT_TIP_MOV_2   IN (2)" +
-                    "\r\n  AND PED.EXT_DAT_MOV_2  between " + datainicioFormat + " and " + datafimFormat + " --datamovimentação" +
-                    //"\r\n  AND not_dta_agenda BETWEEN " + recin + " and " + recfim + " --datarecebimento" +
-                    "\r\n  AND PED.EXT_TIP_MOV_P = (" + situacao + ") " +
-                    "\r\n  and EXT_COD_FOR_3 = (" +codfor+") --fornecedor" +
-                   // "\r\n  AND EXT_USUARIO_4 LIKE    :usuario  " +
-                    "\r\n  AND PED.EXT_COD_LOJ_2   in (" + fil + ")--filial" +
-                    "\r\n  AND LOJ.TIP_CODIGO      = PED.EXT_COD_LOJ_P" +
-                    "\r\n  AND FORN.TIP_CODIGO     = PED.EXT_COD_FOR_3" +
-                    "\r\n  and not_nped_1 = PED.EXT_NUM_PED_P" +
-                    "\r\n  and PED.EXT_DAT_MOV_P = not_dta_agenda" +
-                    "\r\n  AND (NOT EXISTS (SELECT 1 FROM AG1FLPED " +
-                    "\r\n                  WHERE CLOJ_CARF   = PED.EXT_COD_LOJ_2" +
-                    "\r\n                    AND CODFOR_CARF = PED.EXT_COD_FOR_3" +
-                    "\r\n                    AND NROPED_CARF = PED.EXT_NUM_PED_2) OR PED.EXT_COD_PRO_P = 0)" +
-                    "\r\n  --ORDER BY EXT_COD_LOJ_P ASC, EXT_NUM_PED_P ASC, EXT_DAT_MOV_P ASC, EXT_TIP_MOV_P ASC, EXT_COD_PRO_P ASC, EXT_COD_CPO_P ASC, EXT_HOR_MOV_P ASC\r\n  \r\n";
-                }
-           //sem usuario,sem fornecedor
+            {
+                //MessageBox.Show($"1- sem usuario");
+                sqlQuery = "SELECT DISTINCT PED.EXT_COD_LOJ_P || DAC(PED.EXT_COD_LOJ_P) || '-' || LOJ.TIP_NOME_FANTASIA AS LOJA," +
+                "\r\n       PED.EXT_COD_FOR_3 || DAC(PED.EXT_COD_FOR_3) || '-' || FORN.TIP_NOME_FANTASIA AS FORNECEDOR," +
+                "\r\n       PED.EXT_NUM_PED_P || '-' ||DAC( PED.EXT_NUM_PED_P) AS        PEDIDOS," +
+                "\r\n       rms7to_date(PED.EXT_DAT_MOV_P) AS DATA_MOV," +
+                "\r\n       rms7to_date(not_dta_agenda) DATA_RECEBIMENTO," +
+                "\r\n       not_nota as nota," +
+                "\r\n       (CASE PED.EXT_TIP_MOV_P" +
+                "\r\n       WHEN 1 THEN 'INCLUIDO'" +
+                "\r\n       WHEN 2 THEN 'ALTERADO'" +
+                "\r\n       WHEN 3 THEN 'BAIXADO'" +
+                "\r\n       WHEN 4 THEN 'CANCELADO'" +
+                "\r\n       ELSE ' '" +
+                "\r\n       END) AS TIPO_MOV," +
+                "\r\n       PED.EXT_COD_PRO_P || '-' || DAC(PED.EXT_COD_PRO_P) AS PRODUTO," +
+                "\r\n       git_DESCRICAO AS DESCRICAO," +
+                "\r\n       SUBSTR(TRIM(TO_CHAR(PED.EXT_HOR_MOV_P,'000000')),1,2) || ':' || SUBSTR(TRIM(TO_CHAR(PED.EXT_HOR_MOV_P,'000000')),3,2)|| ':' || SUBSTR(TRIM(TO_CHAR(PED.EXT_HOR_MOV_P,'000000')),5,2) AS HORA," +
+                "\r\n       PED.EXT_USUARIO_4," +
+                "\r\n       DECODE(NVL(LENGTH(TRIM(TRANSLATE(EXT_DE_PARA, '+-0123456789.', ' '))),0), 0," +
+                "\r\n              DECODE(PED.EXT_TIP_MOV_P, 2, " +
+                "\r\n              DECODE(PED.EXT_COD_CPO_P, 12, " +
+                "\r\n                     ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,1,13))) || ',' || ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,14,2))), " +
+                "\r\n                     ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,1,15)))), ''), '') AS ANTERIOR," +
+                "\r\n       DECODE(NVL(LENGTH(TRIM(TRANSLATE(EXT_DE_PARA, '+-0123456789.', ' '))),0), 0," +
+                "\r\n       DECODE(PED.EXT_TIP_MOV_P, 2," +
+                "\r\n              DECODE(PED.EXT_COD_CPO_P, 12, " +
+                "\r\n                      ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,16,13))) || ',' || ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,29,2)))," +
+                "\r\n                      ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,16,15)))), ''), '') AS ATUAL, " +
+                "\r\n       DECODE(PED.EXT_TIP_MOV_P, 2," +
+                "\r\n       (CASE PED.EXT_COD_CPO_P" +
+                "\r\n        WHEN 1 THEN 'CND PGTO'" +
+                "\r\n        WHEN 2 THEN 'DT INICIAL'" +
+                "\r\n        WHEN 3 THEN 'DT FIM'" +
+                "\r\n        WHEN 4 THEN 'PGTO'" +
+                "\r\n        WHEN 5 THEN 'FRETE'" +
+                "\r\n        WHEN 6 THEN 'TRANSP'" +
+                "\r\n        WHEN 7 THEN 'OBS'" +
+                "\r\n        WHEN 10 THEN 'EMB'" +
+                "\r\n        WHEN 11 THEN 'QTD PED'" +
+                "\r\n        WHEN 12 THEN 'CUSTO FORN'" +
+                "\r\n        WHEN 13 THEN 'DESCONTO'" +
+                "\r\n        WHEN 14 THEN 'IPI'" +
+                "\r\n        WHEN 15 THEN 'IPI VALOR'" +
+                "\r\n        WHEN 18 THEN 'DESP. ACESS.'  " +
+                "\r\n        WHEN 19 THEN 'COMPRADOR'  " +
+                "\r\n        WHEN 20 THEN 'CUSTO TOT.'  " +
+                "\r\n        ELSE 'OUTRO'" +
+                "\r\n        END), " +
+                "\r\n               ' ') AS CAMPO_ALTERADO, " +
+                "\r\n        (SELECT 1 FROM AG1FLPED " +
+                "\r\n          WHERE CLOJ_CARF   = PED.EXT_COD_LOJ_2" +
+                "\r\n            AND CODFOR_CARF = PED.EXT_COD_FOR_3" +
+                "\r\n            AND NROPED_CARF = PED.EXT_NUM_PED_2) AS SITUACAO" +
+                "\r\nFROM AG1EPEDI PED, AA2CTIPO LOJ, AA2CTIPO FORN, AG2CAPNT, AA3CITEM" +
+                "\r\nWHERE 1 = 1\r\n  and PED.EXT_COD_PRO_P = git_cod_item  " +
+                "\r\n  --and PED.EXT_COD_CPO_P is null" +
+                "\r\n  and PED.EXT_COD_PRO_P <> 0" +
+                "\r\n  AND PED.EXT_TIP_MOV_2   IN (1)" +
+                "\r\n  AND PED.EXT_DAT_MOV_2  between " + datainicioFormat + " and " + datafimFormat + " --datamovimentação" +
+                //"\r\n  AND not_dta_agenda BETWEEN " + recin + " and " + recfim + " --datarecebimento" +
+                "\r\n  AND PED.EXT_TIP_MOV_P = (" + situacao + ") " +
+                "\r\n  and EXT_COD_FOR_3 = (" + codfor + ")--fornecedor" +
+                "\r\n  AND PED.EXT_COD_LOJ_2   in (" + fil + ")--filial" +
+                //"\r\n  AND EXT_USUARIO_4 LIKE    :usuario  " +
+                "\r\n  AND LOJ.TIP_CODIGO      = PED.EXT_COD_LOJ_P" +
+                "\r\n  AND FORN.TIP_CODIGO     = PED.EXT_COD_FOR_3" +
+                "\r\n  and not_nped_1 = PED.EXT_NUM_PED_P" +
+                "\r\n  --and PED.EXT_DAT_MOV_P = not_dta_agenda" +
+                "\r\n  AND (NOT EXISTS (SELECT 1 FROM AG1FLPED " +
+                "\r\n                  WHERE CLOJ_CARF   = PED.EXT_COD_LOJ_2" +
+                "\r\n                    AND CODFOR_CARF = PED.EXT_COD_FOR_3" +
+                "\r\n                    AND NROPED_CARF = PED.EXT_NUM_PED_2) OR PED.EXT_COD_PRO_P = 0)" +
+                "\r\n  --ORDER BY EXT_COD_LOJ_P ASC, EXT_NUM_PED_P ASC, EXT_DAT_MOV_P ASC, EXT_TIP_MOV_P ASC, EXT_COD_PRO_P ASC, EXT_COD_CPO_P ASC, EXT_HOR_MOV_P ASC" +
+                "\r\n union all" +
+                "\r\n SELECT PED.EXT_COD_LOJ_P || DAC(PED.EXT_COD_LOJ_P) || '-' || LOJ.TIP_NOME_FANTASIA AS LOJA," +
+                "\r\n       PED.EXT_COD_FOR_3 || DAC(PED.EXT_COD_FOR_3) || '-' || FORN.TIP_NOME_FANTASIA AS FORNECEDOR," +
+                "\r\n       PED.EXT_NUM_PED_P || '-' ||DAC( PED.EXT_NUM_PED_P) AS        PEDIDOS," +
+                "\r\n       rms7to_date(PED.EXT_DAT_MOV_P) AS DATA_MOV," +
+                "\r\n       rms7to_date(not_dta_agenda) DATA_RECEBIMENTO," +
+                "\r\n       not_nota as nota," +
+                "\r\n       (CASE PED.EXT_TIP_MOV_P" +
+                "\r\n       WHEN 1 THEN 'INCLUIDO'" +
+                "\r\n       WHEN 2 THEN 'ALTERADO'" +
+                "\r\n       WHEN 3 THEN 'BAIXADO'" +
+                "\r\n       WHEN 4 THEN 'CANCELADO'" +
+                "\r\n       ELSE ' '" +
+                "\r\n       END) AS TIPO_MOV," +
+                "\r\n       PED.EXT_COD_PRO_P || '-' || DAC(PED.EXT_COD_PRO_P) AS PRODUTO," +
+                "\r\n       git_DESCRICAO AS DESCRICAO," +
+                "\r\n       SUBSTR(TRIM(TO_CHAR(PED.EXT_HOR_MOV_P,'000000')),1,2) || ':' || SUBSTR(TRIM(TO_CHAR(PED.EXT_HOR_MOV_P,'000000')),3,2)|| ':' || SUBSTR(TRIM(TO_CHAR(PED.EXT_HOR_MOV_P,'000000')),5,2) AS HORA," +
+                "\r\n       PED.EXT_USUARIO_4," +
+                "\r\n       DECODE(NVL(LENGTH(TRIM(TRANSLATE(EXT_DE_PARA, '+-0123456789.', ' '))),0), 0," +
+                "\r\n              DECODE(PED.EXT_TIP_MOV_P, 2, " +
+                "\r\n              DECODE(PED.EXT_COD_CPO_P, 12, " +
+                "\r\n                     ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,1,13))) || ',' || ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,14,2))), " +
+                "\r\n                     ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,1,15)))), ''), '') AS ANTERIOR," +
+                "\r\n       DECODE(NVL(LENGTH(TRIM(TRANSLATE(EXT_DE_PARA, '+-0123456789.', ' '))),0), 0," +
+                "\r\n       DECODE(PED.EXT_TIP_MOV_P, 2," +
+                "\r\n              DECODE(PED.EXT_COD_CPO_P, 12, " +
+                "\r\n                      ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,16,13))) || ',' || ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,29,2)))," +
+                "\r\n                      ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,16,15)))), ''), '') AS ATUAL, " +
+                "\r\n       DECODE(PED.EXT_TIP_MOV_P, 2," +
+                "\r\n       (CASE PED.EXT_COD_CPO_P" +
+                "\r\n        WHEN 1 THEN 'CND PGTO'" +
+                "\r\n        WHEN 2 THEN 'DT INICIAL'" +
+                "\r\n        WHEN 3 THEN 'DT FIM'" +
+                "\r\n        WHEN 4 THEN 'PGTO'" +
+                "\r\n        WHEN 5 THEN 'FRETE'" +
+                "\r\n        WHEN 6 THEN 'TRANSP'" +
+                "\r\n        WHEN 7 THEN 'OBS'" +
+                "\r\n        WHEN 10 THEN 'EMB'" +
+                "\r\n        WHEN 11 THEN 'QTD PED'" +
+                "\r\n        WHEN 12 THEN 'CUSTO FORN'" +
+                "\r\n        WHEN 13 THEN 'DESCONTO'" +
+                "\r\n        WHEN 14 THEN 'IPI'" +
+                "\r\n        WHEN 15 THEN 'IPI VALOR'" +
+                "\r\n        WHEN 18 THEN 'DESP. ACESS.'  " +
+                "\r\n        WHEN 19 THEN 'COMPRADOR'  " +
+                "\r\n        WHEN 20 THEN 'CUSTO TOT.'  " +
+                "\r\n        ELSE 'OUTRO'" +
+                "\r\n        END), " +
+                "\r\n        ' ') AS CAMPO_ALTERADO, " +
+                "\r\n        (SELECT 1 FROM AG1FLPED " +
+                "\r\n          WHERE CLOJ_CARF   = PED.EXT_COD_LOJ_2" +
+                "\r\n            AND CODFOR_CARF = PED.EXT_COD_FOR_3" +
+                "\r\n            AND NROPED_CARF = PED.EXT_NUM_PED_2) AS SITUACAO" +
+                "\r\nFROM AG1EPEDI PED, AA2CTIPO LOJ, AA2CTIPO FORN, AG2CAPNT, AA3CITEM" +
+                "\r\nWHERE 1 = 1" +
+                "\r\n  and PED.EXT_COD_CPO_P in (11,12,18)  " +
+                "\r\n   and PED.EXT_COD_PRO_P = git_cod_item " +
+                "\r\n  AND PED.EXT_TIP_MOV_2   IN (2)" +
+                "\r\n  AND PED.EXT_DAT_MOV_2  between " + datainicioFormat + " and " + datafimFormat + " --datamovimentação" +
+                //"\r\n  AND not_dta_agenda BETWEEN " + recin + " and " + recfim + " --datarecebimento" +
+                "\r\n  AND PED.EXT_TIP_MOV_P = (" + situacao + ") " +
+                "\r\n  and EXT_COD_FOR_3 = (" + codfor + ") --fornecedor" +
+                // "\r\n  AND EXT_USUARIO_4 LIKE    :usuario  " +
+                "\r\n  AND PED.EXT_COD_LOJ_2   in (" + fil + ")--filial" +
+                "\r\n  AND LOJ.TIP_CODIGO      = PED.EXT_COD_LOJ_P" +
+                "\r\n  AND FORN.TIP_CODIGO     = PED.EXT_COD_FOR_3" +
+                "\r\n  and not_nped_1 = PED.EXT_NUM_PED_P" +
+                "\r\n  and PED.EXT_DAT_MOV_P = not_dta_agenda" +
+                "\r\n  AND (NOT EXISTS (SELECT 1 FROM AG1FLPED " +
+                "\r\n                  WHERE CLOJ_CARF   = PED.EXT_COD_LOJ_2" +
+                "\r\n                    AND CODFOR_CARF = PED.EXT_COD_FOR_3" +
+                "\r\n                    AND NROPED_CARF = PED.EXT_NUM_PED_2) OR PED.EXT_COD_PRO_P = 0)" +
+                "\r\n  --ORDER BY EXT_COD_LOJ_P ASC, EXT_NUM_PED_P ASC, EXT_DAT_MOV_P ASC, EXT_TIP_MOV_P ASC, EXT_COD_PRO_P ASC, EXT_COD_CPO_P ASC, EXT_HOR_MOV_P ASC\r\n  \r\n";
+            }
+            //sem usuario,sem fornecedor
             else if (textBox2.Text == "" && textBox1.Text == "" && comboBox1.Text != "" && comboBox2.Text != "")
             {
+                //MessageBox.Show($"2-sem usuario e sem fornecedor");
                 sqlQuery = "SELECT DISTINCT PED.EXT_COD_LOJ_P || DAC(PED.EXT_COD_LOJ_P) || '-' || LOJ.TIP_NOME_FANTASIA AS LOJA," +
                     "\r\n       PED.EXT_COD_FOR_3 || DAC(PED.EXT_COD_FOR_3) || '-' || FORN.TIP_NOME_FANTASIA AS FORNECEDOR," +
                     "\r\n       PED.EXT_NUM_PED_P || '-' ||DAC( PED.EXT_NUM_PED_P) AS        PEDIDOS," +
@@ -607,9 +622,160 @@ namespace Teste
                     "\r\n  --ORDER BY EXT_COD_LOJ_P ASC, EXT_NUM_PED_P ASC, EXT_DAT_MOV_P ASC, EXT_TIP_MOV_P ASC, EXT_COD_PRO_P ASC, EXT_COD_CPO_P ASC, EXT_HOR_MOV_P ASC\r\n  \r\n";
             }
 
-            //com usuario,sem fornecedor
-            else if (textBox2.Text != "" && textBox1.Text == "" && comboBox1.Text != "" && comboBox2.Text != "")
+            //com usuario,situação, sem filial sem fornecedor
+            else if (textBox2.Text != "" && textBox1.Text == "" && comboBox1.Text != "" && comboBox2.SelectedItem == null)
             {
+                //MessageBox.Show($"3 com usuario,situação, sem filial sem fornecedor");
+                sqlQuery = "SELECT DISTINCT PED.EXT_COD_LOJ_P || DAC(PED.EXT_COD_LOJ_P) || '-' || LOJ.TIP_NOME_FANTASIA AS LOJA," +
+                    "\r\n       PED.EXT_COD_FOR_3 || DAC(PED.EXT_COD_FOR_3) || '-' || FORN.TIP_NOME_FANTASIA AS FORNECEDOR," +
+                    "\r\n       PED.EXT_NUM_PED_P || '-' ||DAC( PED.EXT_NUM_PED_P) AS        PEDIDOS," +
+                    "\r\n       rms7to_date(PED.EXT_DAT_MOV_P) AS DATA_MOV," +
+                    "\r\n       rms7to_date(not_dta_agenda) DATA_RECEBIMENTO," +
+                    "\r\n       not_nota as nota," +
+                    "\r\n       (CASE PED.EXT_TIP_MOV_P" +
+                    "\r\n       WHEN 1 THEN 'INCLUIDO'" +
+                    "\r\n       WHEN 2 THEN 'ALTERADO'" +
+                    "\r\n       WHEN 3 THEN 'BAIXADO'" +
+                    "\r\n       WHEN 4 THEN 'CANCELADO'" +
+                    "\r\n       ELSE ' '" +
+                    "\r\n       END) AS TIPO_MOV," +
+                    "\r\n       PED.EXT_COD_PRO_P || '-' || DAC(PED.EXT_COD_PRO_P) AS PRODUTO," +
+                    "\r\n       git_DESCRICAO AS DESCRICAO," +
+                    "\r\n       SUBSTR(TRIM(TO_CHAR(PED.EXT_HOR_MOV_P,'000000')),1,2) || ':' || SUBSTR(TRIM(TO_CHAR(PED.EXT_HOR_MOV_P,'000000')),3,2)|| ':' || SUBSTR(TRIM(TO_CHAR(PED.EXT_HOR_MOV_P,'000000')),5,2) AS HORA," +
+                    "\r\n       PED.EXT_USUARIO_4," +
+                    "\r\n       DECODE(NVL(LENGTH(TRIM(TRANSLATE(EXT_DE_PARA, '+-0123456789.', ' '))),0), 0," +
+                    "\r\n              DECODE(PED.EXT_TIP_MOV_P, 2, " +
+                    "\r\n              DECODE(PED.EXT_COD_CPO_P, 12, " +
+                    "\r\n                     ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,1,13))) || ',' || ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,14,2))), " +
+                    "\r\n                     ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,1,15)))), ''), '') AS ANTERIOR," +
+                    "\r\n       DECODE(NVL(LENGTH(TRIM(TRANSLATE(EXT_DE_PARA, '+-0123456789.', ' '))),0), 0," +
+                    "\r\n       DECODE(PED.EXT_TIP_MOV_P, 2," +
+                    "\r\n              DECODE(PED.EXT_COD_CPO_P, 12, " +
+                    "\r\n                      ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,16,13))) || ',' || ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,29,2)))," +
+                    "\r\n                      ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,16,15)))), ''), '') AS ATUAL, " +
+                    "\r\n       DECODE(PED.EXT_TIP_MOV_P, 2," +
+                    "\r\n       (CASE PED.EXT_COD_CPO_P" +
+                    "\r\n        WHEN 1 THEN 'CND PGTO'" +
+                    "\r\n        WHEN 2 THEN 'DT INICIAL'" +
+                    "\r\n        WHEN 3 THEN 'DT FIM'" +
+                    "\r\n        WHEN 4 THEN 'PGTO'" +
+                    "\r\n        WHEN 5 THEN 'FRETE'" +
+                    "\r\n        WHEN 6 THEN 'TRANSP'" +
+                    "\r\n        WHEN 7 THEN 'OBS'" +
+                    "\r\n        WHEN 10 THEN 'EMB'" +
+                    "\r\n        WHEN 11 THEN 'QTD PED'" +
+                    "\r\n        WHEN 12 THEN 'CUSTO FORN'" +
+                    "\r\n        WHEN 13 THEN 'DESCONTO'" +
+                    "\r\n        WHEN 14 THEN 'IPI'" +
+                    "\r\n        WHEN 15 THEN 'IPI VALOR'" +
+                    "\r\n        WHEN 18 THEN 'DESP. ACESS.'  " +
+                    "\r\n        WHEN 19 THEN 'COMPRADOR'  " +
+                    "\r\n        WHEN 20 THEN 'CUSTO TOT.'  " +
+                    "\r\n        ELSE 'OUTRO'" +
+                    "\r\n        END), " +
+                    "\r\n               ' ') AS CAMPO_ALTERADO, " +
+                    "\r\n        (SELECT 1 FROM AG1FLPED " +
+                    "\r\n          WHERE CLOJ_CARF   = PED.EXT_COD_LOJ_2" +
+                    "\r\n            AND CODFOR_CARF = PED.EXT_COD_FOR_3" +
+                    "\r\n            AND NROPED_CARF = PED.EXT_NUM_PED_2) AS SITUACAO" +
+                    "\r\nFROM AG1EPEDI PED, AA2CTIPO LOJ, AA2CTIPO FORN, AG2CAPNT, AA3CITEM" +
+                    "\r\nWHERE 1 = 1\r\n  and PED.EXT_COD_PRO_P = git_cod_item  " +
+                    "\r\n  --and PED.EXT_COD_CPO_P is null" +
+                    "\r\n  and PED.EXT_COD_PRO_P <> 0" +
+                    "\r\n  AND PED.EXT_TIP_MOV_2   IN (1)" +
+                    "\r\n  AND PED.EXT_DAT_MOV_2  between " + datainicioFormat + " and " + datafimFormat + " --datamovimentação" +
+                    //"\r\n  AND not_dta_agenda BETWEEN " + recin + " and " + recfim + " --datarecebimento" +
+                    "\r\n  AND PED.EXT_TIP_MOV_P = (" + situacao + ") " +
+                    //"\r\n  and EXT_COD_FOR_3 = (\"+codfor+\")--fornecedor" +
+                    //"\r\n  AND PED.EXT_COD_LOJ_2   in (" + fil + ")--filial" +
+                    "\r\n  AND EXT_USUARIO_4 LIKE    :usuario  " +
+                    "\r\n  AND LOJ.TIP_CODIGO      = PED.EXT_COD_LOJ_P" +
+                    "\r\n  AND FORN.TIP_CODIGO     = PED.EXT_COD_FOR_3" +
+                    "\r\n  and not_nped_1 = PED.EXT_NUM_PED_P" +
+                    "\r\n  --and PED.EXT_DAT_MOV_P = not_dta_agenda" +
+                    "\r\n  AND (NOT EXISTS (SELECT 1 FROM AG1FLPED " +
+                    "\r\n                  WHERE CLOJ_CARF   = PED.EXT_COD_LOJ_2" +
+                    "\r\n                    AND CODFOR_CARF = PED.EXT_COD_FOR_3" +
+                    "\r\n                    AND NROPED_CARF = PED.EXT_NUM_PED_2) OR PED.EXT_COD_PRO_P = 0)" +
+                    "\r\n  --ORDER BY EXT_COD_LOJ_P ASC, EXT_NUM_PED_P ASC, EXT_DAT_MOV_P ASC, EXT_TIP_MOV_P ASC, EXT_COD_PRO_P ASC, EXT_COD_CPO_P ASC, EXT_HOR_MOV_P ASC" +
+                    "\r\n union all" +
+                    "\r\n SELECT PED.EXT_COD_LOJ_P || DAC(PED.EXT_COD_LOJ_P) || '-' || LOJ.TIP_NOME_FANTASIA AS LOJA," +
+                    "\r\n       PED.EXT_COD_FOR_3 || DAC(PED.EXT_COD_FOR_3) || '-' || FORN.TIP_NOME_FANTASIA AS FORNECEDOR," +
+                    "\r\n       PED.EXT_NUM_PED_P || '-' ||DAC( PED.EXT_NUM_PED_P) AS        PEDIDOS," +
+                    "\r\n       rms7to_date(PED.EXT_DAT_MOV_P) AS DATA_MOV," +
+                    "\r\n       rms7to_date(not_dta_agenda) DATA_RECEBIMENTO," +
+                    "\r\n       not_nota as nota," +
+                    "\r\n       (CASE PED.EXT_TIP_MOV_P" +
+                    "\r\n       WHEN 1 THEN 'INCLUIDO'" +
+                    "\r\n       WHEN 2 THEN 'ALTERADO'" +
+                    "\r\n       WHEN 3 THEN 'BAIXADO'" +
+                    "\r\n       WHEN 4 THEN 'CANCELADO'" +
+                    "\r\n       ELSE ' '" +
+                    "\r\n       END) AS TIPO_MOV," +
+                    "\r\n       PED.EXT_COD_PRO_P || '-' || DAC(PED.EXT_COD_PRO_P) AS PRODUTO," +
+                    "\r\n       git_DESCRICAO AS DESCRICAO," +
+                    "\r\n       SUBSTR(TRIM(TO_CHAR(PED.EXT_HOR_MOV_P,'000000')),1,2) || ':' || SUBSTR(TRIM(TO_CHAR(PED.EXT_HOR_MOV_P,'000000')),3,2)|| ':' || SUBSTR(TRIM(TO_CHAR(PED.EXT_HOR_MOV_P,'000000')),5,2) AS HORA," +
+                    "\r\n       PED.EXT_USUARIO_4," +
+                    "\r\n       DECODE(NVL(LENGTH(TRIM(TRANSLATE(EXT_DE_PARA, '+-0123456789.', ' '))),0), 0," +
+                    "\r\n              DECODE(PED.EXT_TIP_MOV_P, 2, " +
+                    "\r\n              DECODE(PED.EXT_COD_CPO_P, 12, " +
+                    "\r\n                     ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,1,13))) || ',' || ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,14,2))), " +
+                    "\r\n                     ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,1,15)))), ''), '') AS ANTERIOR," +
+                    "\r\n       DECODE(NVL(LENGTH(TRIM(TRANSLATE(EXT_DE_PARA, '+-0123456789.', ' '))),0), 0," +
+                    "\r\n       DECODE(PED.EXT_TIP_MOV_P, 2," +
+                    "\r\n              DECODE(PED.EXT_COD_CPO_P, 12, " +
+                    "\r\n                      ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,16,13))) || ',' || ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,29,2)))," +
+                    "\r\n                      ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,16,15)))), ''), '') AS ATUAL, " +
+                    "\r\n       DECODE(PED.EXT_TIP_MOV_P, 2," +
+                    "\r\n       (CASE PED.EXT_COD_CPO_P" +
+                    "\r\n        WHEN 1 THEN 'CND PGTO'" +
+                    "\r\n        WHEN 2 THEN 'DT INICIAL'" +
+                    "\r\n        WHEN 3 THEN 'DT FIM'" +
+                    "\r\n        WHEN 4 THEN 'PGTO'" +
+                    "\r\n        WHEN 5 THEN 'FRETE'" +
+                    "\r\n        WHEN 6 THEN 'TRANSP'" +
+                    "\r\n        WHEN 7 THEN 'OBS'" +
+                    "\r\n        WHEN 10 THEN 'EMB'" +
+                    "\r\n        WHEN 11 THEN 'QTD PED'" +
+                    "\r\n        WHEN 12 THEN 'CUSTO FORN'" +
+                    "\r\n        WHEN 13 THEN 'DESCONTO'" +
+                    "\r\n        WHEN 14 THEN 'IPI'" +
+                    "\r\n        WHEN 15 THEN 'IPI VALOR'" +
+                    "\r\n        WHEN 18 THEN 'DESP. ACESS.'  " +
+                    "\r\n        WHEN 19 THEN 'COMPRADOR'  " +
+                    "\r\n        WHEN 20 THEN 'CUSTO TOT.'  " +
+                    "\r\n        ELSE 'OUTRO'" +
+                    "\r\n        END), " +
+                    "\r\n        ' ') AS CAMPO_ALTERADO, " +
+                    "\r\n        (SELECT 1 FROM AG1FLPED " +
+                    "\r\n          WHERE CLOJ_CARF   = PED.EXT_COD_LOJ_2" +
+                    "\r\n            AND CODFOR_CARF = PED.EXT_COD_FOR_3" +
+                    "\r\n            AND NROPED_CARF = PED.EXT_NUM_PED_2) AS SITUACAO" +
+                    "\r\nFROM AG1EPEDI PED, AA2CTIPO LOJ, AA2CTIPO FORN, AG2CAPNT, AA3CITEM" +
+                    "\r\nWHERE 1 = 1" +
+                    "\r\n  and PED.EXT_COD_CPO_P in (11,12,18)  " +
+                    "\r\n   and PED.EXT_COD_PRO_P = git_cod_item " +
+                    "\r\n  AND PED.EXT_TIP_MOV_2   IN (2)" +
+                    "\r\n  AND PED.EXT_DAT_MOV_2  between " + datainicioFormat + " and " + datafimFormat + " --datamovimentação" +
+                    //"\r\n  AND not_dta_agenda BETWEEN " + recin + " and " + recfim + " --datarecebimento" +
+                    "\r\n  AND PED.EXT_TIP_MOV_P = (" + situacao + ") " +
+                    //"\r\n  and EXT_COD_FOR_3 = ("+codfor+") --fornecedor" +
+                    "\r\n  AND EXT_USUARIO_4 LIKE    :usuario  " +
+                    // "\r\n  AND PED.EXT_COD_LOJ_2   in (" + fil + ")--filial" +
+                    "\r\n  AND LOJ.TIP_CODIGO      = PED.EXT_COD_LOJ_P" +
+                    "\r\n  AND FORN.TIP_CODIGO     = PED.EXT_COD_FOR_3" +
+                    "\r\n  and not_nped_1 = PED.EXT_NUM_PED_P" +
+                    "\r\n  and PED.EXT_DAT_MOV_P = not_dta_agenda" +
+                    "\r\n  AND (NOT EXISTS (SELECT 1 FROM AG1FLPED " +
+                    "\r\n                  WHERE CLOJ_CARF   = PED.EXT_COD_LOJ_2" +
+                    "\r\n                    AND CODFOR_CARF = PED.EXT_COD_FOR_3" +
+                    "\r\n                    AND NROPED_CARF = PED.EXT_NUM_PED_2) OR PED.EXT_COD_PRO_P = 0)" +
+                    "\r\n  --ORDER BY EXT_COD_LOJ_P ASC, EXT_NUM_PED_P ASC, EXT_DAT_MOV_P ASC, EXT_TIP_MOV_P ASC, EXT_COD_PRO_P ASC, EXT_COD_CPO_P ASC, EXT_HOR_MOV_P ASC\r\n  \r\n";
+            }
+            //com usuario,situação,filial sem fornecedor
+            else if (textBox2.Text != "" && textBox1.Text == "" && comboBox1.Text != "" && comboBox2.SelectedItem != null)
+            {
+                //MessageBox.Show($"4 com usuario,situação,filial sem fornecedor");
                 sqlQuery = "SELECT DISTINCT PED.EXT_COD_LOJ_P || DAC(PED.EXT_COD_LOJ_P) || '-' || LOJ.TIP_NOME_FANTASIA AS LOJA," +
                     "\r\n       PED.EXT_COD_FOR_3 || DAC(PED.EXT_COD_FOR_3) || '-' || FORN.TIP_NOME_FANTASIA AS FORNECEDOR," +
                     "\r\n       PED.EXT_NUM_PED_P || '-' ||DAC( PED.EXT_NUM_PED_P) AS        PEDIDOS," +
@@ -756,10 +922,13 @@ namespace Teste
                     "\r\n                    AND NROPED_CARF = PED.EXT_NUM_PED_2) OR PED.EXT_COD_PRO_P = 0)" +
                     "\r\n  --ORDER BY EXT_COD_LOJ_P ASC, EXT_NUM_PED_P ASC, EXT_DAT_MOV_P ASC, EXT_TIP_MOV_P ASC, EXT_COD_PRO_P ASC, EXT_COD_CPO_P ASC, EXT_HOR_MOV_P ASC\r\n  \r\n";
             }
-            //sem usuario,sem fornecedor,sem situação 
+
+            //sem usuario,sem fornecedor,sem situação
             else if (textBox2.Text == "" && textBox1.Text == "" && comboBox1.SelectedItem == null && comboBox2.Text != "")
             {
-                MessageBox.Show($"teste");
+                //MessageBox.Show($"5 apenas filial ");
+                
+
                 sqlQuery = "SELECT DISTINCT PED.EXT_COD_LOJ_P || DAC(PED.EXT_COD_LOJ_P) || '-' || LOJ.TIP_NOME_FANTASIA AS LOJA," +
                     "\r\n       PED.EXT_COD_FOR_3 || DAC(PED.EXT_COD_FOR_3) || '-' || FORN.TIP_NOME_FANTASIA AS FORNECEDOR," +
                     "\r\n       PED.EXT_NUM_PED_P || '-' ||DAC( PED.EXT_NUM_PED_P) AS        PEDIDOS," +
@@ -892,7 +1061,7 @@ namespace Teste
                     "\r\n  AND PED.EXT_TIP_MOV_2   IN (2)" +
                     "\r\n  AND PED.EXT_DAT_MOV_2  between " + datainicioFormat + " and " + datafimFormat + " --datamovimentação" +
                     //"\r\n  AND not_dta_agenda BETWEEN " + recin + " and " + recfim + " --datarecebimento" +
-                   // "\r\n  AND PED.EXT_TIP_MOV_P = (" + situacao + ") " +
+                    // "\r\n  AND PED.EXT_TIP_MOV_P = (" + situacao + ") " +
                     //"\r\n  and EXT_COD_FOR_3 = ("+codfor+") --fornecedor" +
                     // "\r\n  AND EXT_USUARIO_4 LIKE    :usuario  " +
                     "\r\n  AND PED.EXT_COD_LOJ_2   in (" + fil + ")--filial" +
@@ -907,11 +1076,162 @@ namespace Teste
                     "\r\n  --ORDER BY EXT_COD_LOJ_P ASC, EXT_NUM_PED_P ASC, EXT_DAT_MOV_P ASC, EXT_TIP_MOV_P ASC, EXT_COD_PRO_P ASC, EXT_COD_CPO_P ASC, EXT_HOR_MOV_P ASC\r\n  \r\n";
             }
 
-
             //todos filtros 
-            else
-                {
-                    sqlQuery = "SELECT DISTINCT PED.EXT_COD_LOJ_P || DAC(PED.EXT_COD_LOJ_P) || '-' || LOJ.TIP_NOME_FANTASIA AS LOJA," +
+            else if (textBox2.Text != "" && textBox1.Text != "" && comboBox1.SelectedItem != null && comboBox2.Text != "")
+            {
+                //MessageBox.Show($" 6 TODOS OS FILTROS");
+                sqlQuery = "SELECT DISTINCT PED.EXT_COD_LOJ_P || DAC(PED.EXT_COD_LOJ_P) || '-' || LOJ.TIP_NOME_FANTASIA AS LOJA," +
+                "\r\n       PED.EXT_COD_FOR_3 || DAC(PED.EXT_COD_FOR_3) || '-' || FORN.TIP_NOME_FANTASIA AS FORNECEDOR," +
+                "\r\n       PED.EXT_NUM_PED_P || '-' ||DAC( PED.EXT_NUM_PED_P) AS        PEDIDOS," +
+                "\r\n       rms7to_date(PED.EXT_DAT_MOV_P) AS DATA_MOV," +
+                "\r\n       rms7to_date(not_dta_agenda) DATA_RECEBIMENTO," +
+                "\r\n       not_nota as nota," +
+                "\r\n       (CASE PED.EXT_TIP_MOV_P" +
+                "\r\n       WHEN 1 THEN 'INCLUIDO'" +
+                "\r\n       WHEN 2 THEN 'ALTERADO'" +
+                "\r\n       WHEN 3 THEN 'BAIXADO'" +
+                "\r\n       WHEN 4 THEN 'CANCELADO'" +
+                "\r\n       ELSE ' '" +
+                "\r\n       END) AS TIPO_MOV," +
+                "\r\n       PED.EXT_COD_PRO_P || '-' || DAC(PED.EXT_COD_PRO_P) AS PRODUTO," +
+                "\r\n       git_DESCRICAO AS DESCRICAO," +
+                "\r\n       SUBSTR(TRIM(TO_CHAR(PED.EXT_HOR_MOV_P,'000000')),1,2) || ':' || SUBSTR(TRIM(TO_CHAR(PED.EXT_HOR_MOV_P,'000000')),3,2)|| ':' || SUBSTR(TRIM(TO_CHAR(PED.EXT_HOR_MOV_P,'000000')),5,2) AS HORA," +
+                "\r\n       PED.EXT_USUARIO_4," +
+                "\r\n       DECODE(NVL(LENGTH(TRIM(TRANSLATE(EXT_DE_PARA, '+-0123456789.', ' '))),0), 0," +
+                "\r\n              DECODE(PED.EXT_TIP_MOV_P, 2, " +
+                "\r\n              DECODE(PED.EXT_COD_CPO_P, 12, " +
+                "\r\n                     ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,1,13))) || ',' || ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,14,2))), " +
+                "\r\n                     ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,1,15)))), ''), '') AS ANTERIOR," +
+                "\r\n       DECODE(NVL(LENGTH(TRIM(TRANSLATE(EXT_DE_PARA, '+-0123456789.', ' '))),0), 0," +
+                "\r\n       DECODE(PED.EXT_TIP_MOV_P, 2," +
+                "\r\n              DECODE(PED.EXT_COD_CPO_P, 12, " +
+                "\r\n                      ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,16,13))) || ',' || ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,29,2)))," +
+                "\r\n                      ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,16,15)))), ''), '') AS ATUAL, " +
+                "\r\n       DECODE(PED.EXT_TIP_MOV_P, 2," +
+                "\r\n       (CASE PED.EXT_COD_CPO_P" +
+                "\r\n        WHEN 1 THEN 'CND PGTO'" +
+                "\r\n        WHEN 2 THEN 'DT INICIAL'" +
+                "\r\n        WHEN 3 THEN 'DT FIM'" +
+                "\r\n        WHEN 4 THEN 'PGTO'" +
+                "\r\n        WHEN 5 THEN 'FRETE'" +
+                "\r\n        WHEN 6 THEN 'TRANSP'" +
+                "\r\n        WHEN 7 THEN 'OBS'" +
+                "\r\n        WHEN 10 THEN 'EMB'" +
+                "\r\n        WHEN 11 THEN 'QTD PED'" +
+                "\r\n        WHEN 12 THEN 'CUSTO FORN'" +
+                "\r\n        WHEN 13 THEN 'DESCONTO'" +
+                "\r\n        WHEN 14 THEN 'IPI'" +
+                "\r\n        WHEN 15 THEN 'IPI VALOR'" +
+                "\r\n        WHEN 18 THEN 'DESP. ACESS.'  " +
+                "\r\n        WHEN 19 THEN 'COMPRADOR'  " +
+                "\r\n        WHEN 20 THEN 'CUSTO TOT.'  " +
+                "\r\n        ELSE 'OUTRO'" +
+                "\r\n        END), " +
+                "\r\n               ' ') AS CAMPO_ALTERADO, " +
+                "\r\n        (SELECT 1 FROM AG1FLPED " +
+                "\r\n          WHERE CLOJ_CARF   = PED.EXT_COD_LOJ_2" +
+                "\r\n            AND CODFOR_CARF = PED.EXT_COD_FOR_3" +
+                "\r\n            AND NROPED_CARF = PED.EXT_NUM_PED_2) AS SITUACAO" +
+                "\r\nFROM AG1EPEDI PED, AA2CTIPO LOJ, AA2CTIPO FORN, AG2CAPNT, AA3CITEM" +
+                "\r\nWHERE 1 = 1\r\n  and PED.EXT_COD_PRO_P = git_cod_item  " +
+                "\r\n  --and PED.EXT_COD_CPO_P is null" +
+                "\r\n  and PED.EXT_COD_PRO_P <> 0" +
+                "\r\n  AND PED.EXT_TIP_MOV_2   IN (1)" +
+                "\r\n  AND PED.EXT_DAT_MOV_2  between " + datainicioFormat + " and " + datafimFormat + " --datamovimentação" +
+                //"\r\n  AND not_dta_agenda BETWEEN " + recin + " and " + recfim + " --datarecebimento" +
+                "\r\n  AND PED.EXT_TIP_MOV_P = (" + situacao + ") " +
+                "\r\n  and EXT_COD_FOR_3 = (" + codfor + ")--fornecedor" +
+                "\r\n  AND PED.EXT_COD_LOJ_2   in (" + fil + ")--filial" +
+                "\r\n  AND EXT_USUARIO_4 LIKE    :usuario  " +
+                "\r\n  AND LOJ.TIP_CODIGO      = PED.EXT_COD_LOJ_P" +
+                "\r\n  AND FORN.TIP_CODIGO     = PED.EXT_COD_FOR_3" +
+                "\r\n  and not_nped_1 = PED.EXT_NUM_PED_P" +
+                "\r\n  --and PED.EXT_DAT_MOV_P = not_dta_agenda" +
+                "\r\n  AND (NOT EXISTS (SELECT 1 FROM AG1FLPED " +
+                "\r\n                  WHERE CLOJ_CARF   = PED.EXT_COD_LOJ_2" +
+                "\r\n                    AND CODFOR_CARF = PED.EXT_COD_FOR_3" +
+                "\r\n                    AND NROPED_CARF = PED.EXT_NUM_PED_2) OR PED.EXT_COD_PRO_P = 0)" +
+                "\r\n  --ORDER BY EXT_COD_LOJ_P ASC, EXT_NUM_PED_P ASC, EXT_DAT_MOV_P ASC, EXT_TIP_MOV_P ASC, EXT_COD_PRO_P ASC, EXT_COD_CPO_P ASC, EXT_HOR_MOV_P ASC" +
+                "\r\n union all" +
+                "\r\n SELECT PED.EXT_COD_LOJ_P || DAC(PED.EXT_COD_LOJ_P) || '-' || LOJ.TIP_NOME_FANTASIA AS LOJA," +
+                "\r\n       PED.EXT_COD_FOR_3 || DAC(PED.EXT_COD_FOR_3) || '-' || FORN.TIP_NOME_FANTASIA AS FORNECEDOR," +
+                "\r\n       PED.EXT_NUM_PED_P || '-' ||DAC( PED.EXT_NUM_PED_P) AS        PEDIDOS," +
+                "\r\n       rms7to_date(PED.EXT_DAT_MOV_P) AS DATA_MOV," +
+                "\r\n       rms7to_date(not_dta_agenda) DATA_RECEBIMENTO," +
+                "\r\n       not_nota as nota," +
+                "\r\n       (CASE PED.EXT_TIP_MOV_P" +
+                "\r\n       WHEN 1 THEN 'INCLUIDO'" +
+                "\r\n       WHEN 2 THEN 'ALTERADO'" +
+                "\r\n       WHEN 3 THEN 'BAIXADO'" +
+                "\r\n       WHEN 4 THEN 'CANCELADO'" +
+                "\r\n       ELSE ' '" +
+                "\r\n       END) AS TIPO_MOV," +
+                "\r\n       PED.EXT_COD_PRO_P || '-' || DAC(PED.EXT_COD_PRO_P) AS PRODUTO," +
+                "\r\n       git_DESCRICAO AS DESCRICAO," +
+                "\r\n       SUBSTR(TRIM(TO_CHAR(PED.EXT_HOR_MOV_P,'000000')),1,2) || ':' || SUBSTR(TRIM(TO_CHAR(PED.EXT_HOR_MOV_P,'000000')),3,2)|| ':' || SUBSTR(TRIM(TO_CHAR(PED.EXT_HOR_MOV_P,'000000')),5,2) AS HORA," +
+                "\r\n       PED.EXT_USUARIO_4," +
+                "\r\n       DECODE(NVL(LENGTH(TRIM(TRANSLATE(EXT_DE_PARA, '+-0123456789.', ' '))),0), 0," +
+                "\r\n              DECODE(PED.EXT_TIP_MOV_P, 2, " +
+                "\r\n              DECODE(PED.EXT_COD_CPO_P, 12, " +
+                "\r\n                     ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,1,13))) || ',' || ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,14,2))), " +
+                "\r\n                     ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,1,15)))), ''), '') AS ANTERIOR," +
+                "\r\n       DECODE(NVL(LENGTH(TRIM(TRANSLATE(EXT_DE_PARA, '+-0123456789.', ' '))),0), 0," +
+                "\r\n       DECODE(PED.EXT_TIP_MOV_P, 2," +
+                "\r\n              DECODE(PED.EXT_COD_CPO_P, 12, " +
+                "\r\n                      ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,16,13))) || ',' || ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,29,2)))," +
+                "\r\n                      ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,16,15)))), ''), '') AS ATUAL, " +
+                "\r\n       DECODE(PED.EXT_TIP_MOV_P, 2," +
+                "\r\n       (CASE PED.EXT_COD_CPO_P" +
+                "\r\n        WHEN 1 THEN 'CND PGTO'" +
+                "\r\n        WHEN 2 THEN 'DT INICIAL'" +
+                "\r\n        WHEN 3 THEN 'DT FIM'" +
+                "\r\n        WHEN 4 THEN 'PGTO'" +
+                "\r\n        WHEN 5 THEN 'FRETE'" +
+                "\r\n        WHEN 6 THEN 'TRANSP'" +
+                "\r\n        WHEN 7 THEN 'OBS'" +
+                "\r\n        WHEN 10 THEN 'EMB'" +
+                "\r\n        WHEN 11 THEN 'QTD PED'" +
+                "\r\n        WHEN 12 THEN 'CUSTO FORN'" +
+                "\r\n        WHEN 13 THEN 'DESCONTO'" +
+                "\r\n        WHEN 14 THEN 'IPI'" +
+                "\r\n        WHEN 15 THEN 'IPI VALOR'" +
+                "\r\n        WHEN 18 THEN 'DESP. ACESS.'  " +
+                "\r\n        WHEN 19 THEN 'COMPRADOR'  " +
+                "\r\n        WHEN 20 THEN 'CUSTO TOT.'  " +
+                "\r\n        ELSE 'OUTRO'" +
+                "\r\n        END), " +
+                "\r\n        ' ') AS CAMPO_ALTERADO, " +
+                "\r\n        (SELECT 1 FROM AG1FLPED " +
+                "\r\n          WHERE CLOJ_CARF   = PED.EXT_COD_LOJ_2" +
+                "\r\n            AND CODFOR_CARF = PED.EXT_COD_FOR_3" +
+                "\r\n            AND NROPED_CARF = PED.EXT_NUM_PED_2) AS SITUACAO" +
+                "\r\nFROM AG1EPEDI PED, AA2CTIPO LOJ, AA2CTIPO FORN, AG2CAPNT, AA3CITEM" +
+                "\r\nWHERE 1 = 1" +
+                "\r\n  and PED.EXT_COD_CPO_P in (11,12,18)  " +
+                "\r\n   and PED.EXT_COD_PRO_P = git_cod_item " +
+                "\r\n  AND PED.EXT_TIP_MOV_2   IN (2)" +
+                "\r\n  AND PED.EXT_DAT_MOV_2  between " + datainicioFormat + " and " + datafimFormat + " --datamovimentação" +
+                //"\r\n  AND not_dta_agenda BETWEEN " + recin + " and " + recfim + " --datarecebimento" +
+                "\r\n  AND PED.EXT_TIP_MOV_P = (" + situacao + ") " +
+                "\r\n  and EXT_COD_FOR_3 = (" + codfor + ") --fornecedor" +
+                "\r\n  AND EXT_USUARIO_4 LIKE    :usuario  " +
+                "\r\n  AND PED.EXT_COD_LOJ_2   in (" + fil + ")--filial" +
+                "\r\n  AND LOJ.TIP_CODIGO      = PED.EXT_COD_LOJ_P" +
+                "\r\n  AND FORN.TIP_CODIGO     = PED.EXT_COD_FOR_3" +
+                "\r\n  and not_nped_1 = PED.EXT_NUM_PED_P" +
+                "\r\n  and PED.EXT_DAT_MOV_P = not_dta_agenda" +
+                "\r\n  AND (NOT EXISTS (SELECT 1 FROM AG1FLPED " +
+                "\r\n                  WHERE CLOJ_CARF   = PED.EXT_COD_LOJ_2" +
+                "\r\n                    AND CODFOR_CARF = PED.EXT_COD_FOR_3" +
+                "\r\n                    AND NROPED_CARF = PED.EXT_NUM_PED_2) OR PED.EXT_COD_PRO_P = 0)" +
+                "\r\n  --ORDER BY EXT_COD_LOJ_P ASC, EXT_NUM_PED_P ASC, EXT_DAT_MOV_P ASC, EXT_TIP_MOV_P ASC, EXT_COD_PRO_P ASC, EXT_COD_CPO_P ASC, EXT_HOR_MOV_P ASC\r\n  \r\n";
+
+            }
+            //sem usuario,situação, com filial  fornecedor
+            else if (textBox2.Text == "" && textBox1.Text != "" && comboBox1.Text == "" && comboBox2.SelectedItem != null)
+            {
+                //MessageBox.Show($"7 filial e fornecedor");
+                sqlQuery = "SELECT DISTINCT PED.EXT_COD_LOJ_P || DAC(PED.EXT_COD_LOJ_P) || '-' || LOJ.TIP_NOME_FANTASIA AS LOJA," +
                     "\r\n       PED.EXT_COD_FOR_3 || DAC(PED.EXT_COD_FOR_3) || '-' || FORN.TIP_NOME_FANTASIA AS FORNECEDOR," +
                     "\r\n       PED.EXT_NUM_PED_P || '-' ||DAC( PED.EXT_NUM_PED_P) AS        PEDIDOS," +
                     "\r\n       rms7to_date(PED.EXT_DAT_MOV_P) AS DATA_MOV," +
@@ -970,10 +1290,10 @@ namespace Teste
                     "\r\n  AND PED.EXT_TIP_MOV_2   IN (1)" +
                     "\r\n  AND PED.EXT_DAT_MOV_2  between " + datainicioFormat + " and " + datafimFormat + " --datamovimentação" +
                     //"\r\n  AND not_dta_agenda BETWEEN " + recin + " and " + recfim + " --datarecebimento" +
-                    "\r\n  AND PED.EXT_TIP_MOV_P = (" + situacao + ") " +
-                    "\r\n  and EXT_COD_FOR_3 = (" +codfor+")--fornecedor" +
+                   // "\r\n  AND PED.EXT_TIP_MOV_P = (" + situacao + ") " +
+                    "\r\n  and EXT_COD_FOR_3 = ("+codfor+")--fornecedor" +
                     "\r\n  AND PED.EXT_COD_LOJ_2   in (" + fil + ")--filial" +
-                    "\r\n  AND EXT_USUARIO_4 LIKE    :usuario  " +
+                   // "\r\n  AND EXT_USUARIO_4 LIKE    :usuario  " +
                     "\r\n  AND LOJ.TIP_CODIGO      = PED.EXT_COD_LOJ_P" +
                     "\r\n  AND FORN.TIP_CODIGO     = PED.EXT_COD_FOR_3" +
                     "\r\n  and not_nped_1 = PED.EXT_NUM_PED_P" +
@@ -1043,9 +1363,9 @@ namespace Teste
                     "\r\n  AND PED.EXT_TIP_MOV_2   IN (2)" +
                     "\r\n  AND PED.EXT_DAT_MOV_2  between " + datainicioFormat + " and " + datafimFormat + " --datamovimentação" +
                     //"\r\n  AND not_dta_agenda BETWEEN " + recin + " and " + recfim + " --datarecebimento" +
-                    "\r\n  AND PED.EXT_TIP_MOV_P = (" + situacao + ") " +
-                    "\r\n  and EXT_COD_FOR_3 = (" +codfor+") --fornecedor" +
-                    "\r\n  AND EXT_USUARIO_4 LIKE    :usuario  " +
+                   // "\r\n  AND PED.EXT_TIP_MOV_P = (" + situacao + ") " +
+                    "\r\n  and EXT_COD_FOR_3 = ("+codfor+") --fornecedor" +
+                   // "\r\n  AND EXT_USUARIO_4 LIKE    :usuario  " +
                     "\r\n  AND PED.EXT_COD_LOJ_2   in (" + fil + ")--filial" +
                     "\r\n  AND LOJ.TIP_CODIGO      = PED.EXT_COD_LOJ_P" +
                     "\r\n  AND FORN.TIP_CODIGO     = PED.EXT_COD_FOR_3" +
@@ -1056,8 +1376,459 @@ namespace Teste
                     "\r\n                    AND CODFOR_CARF = PED.EXT_COD_FOR_3" +
                     "\r\n                    AND NROPED_CARF = PED.EXT_NUM_PED_2) OR PED.EXT_COD_PRO_P = 0)" +
                     "\r\n  --ORDER BY EXT_COD_LOJ_P ASC, EXT_NUM_PED_P ASC, EXT_DAT_MOV_P ASC, EXT_TIP_MOV_P ASC, EXT_COD_PRO_P ASC, EXT_COD_CPO_P ASC, EXT_HOR_MOV_P ASC\r\n  \r\n";
+            }
 
-                }
+            //sem usuario,filial,com  situação  fornecedor
+            else if (textBox2.Text == "" && textBox1.Text != "" && comboBox1.Text != "" && comboBox2.SelectedItem == null)
+            {
+                //MessageBox.Show($"8 situação e fornecedor");
+                sqlQuery = "SELECT DISTINCT PED.EXT_COD_LOJ_P || DAC(PED.EXT_COD_LOJ_P) || '-' || LOJ.TIP_NOME_FANTASIA AS LOJA," +
+                    "\r\n       PED.EXT_COD_FOR_3 || DAC(PED.EXT_COD_FOR_3) || '-' || FORN.TIP_NOME_FANTASIA AS FORNECEDOR," +
+                    "\r\n       PED.EXT_NUM_PED_P || '-' ||DAC( PED.EXT_NUM_PED_P) AS        PEDIDOS," +
+                    "\r\n       rms7to_date(PED.EXT_DAT_MOV_P) AS DATA_MOV," +
+                    "\r\n       rms7to_date(not_dta_agenda) DATA_RECEBIMENTO," +
+                    "\r\n       not_nota as nota," +
+                    "\r\n       (CASE PED.EXT_TIP_MOV_P" +
+                    "\r\n       WHEN 1 THEN 'INCLUIDO'" +
+                    "\r\n       WHEN 2 THEN 'ALTERADO'" +
+                    "\r\n       WHEN 3 THEN 'BAIXADO'" +
+                    "\r\n       WHEN 4 THEN 'CANCELADO'" +
+                    "\r\n       ELSE ' '" +
+                    "\r\n       END) AS TIPO_MOV," +
+                    "\r\n       PED.EXT_COD_PRO_P || '-' || DAC(PED.EXT_COD_PRO_P) AS PRODUTO," +
+                    "\r\n       git_DESCRICAO AS DESCRICAO," +
+                    "\r\n       SUBSTR(TRIM(TO_CHAR(PED.EXT_HOR_MOV_P,'000000')),1,2) || ':' || SUBSTR(TRIM(TO_CHAR(PED.EXT_HOR_MOV_P,'000000')),3,2)|| ':' || SUBSTR(TRIM(TO_CHAR(PED.EXT_HOR_MOV_P,'000000')),5,2) AS HORA," +
+                    "\r\n       PED.EXT_USUARIO_4," +
+                    "\r\n       DECODE(NVL(LENGTH(TRIM(TRANSLATE(EXT_DE_PARA, '+-0123456789.', ' '))),0), 0," +
+                    "\r\n              DECODE(PED.EXT_TIP_MOV_P, 2, " +
+                    "\r\n              DECODE(PED.EXT_COD_CPO_P, 12, " +
+                    "\r\n                     ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,1,13))) || ',' || ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,14,2))), " +
+                    "\r\n                     ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,1,15)))), ''), '') AS ANTERIOR," +
+                    "\r\n       DECODE(NVL(LENGTH(TRIM(TRANSLATE(EXT_DE_PARA, '+-0123456789.', ' '))),0), 0," +
+                    "\r\n       DECODE(PED.EXT_TIP_MOV_P, 2," +
+                    "\r\n              DECODE(PED.EXT_COD_CPO_P, 12, " +
+                    "\r\n                      ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,16,13))) || ',' || ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,29,2)))," +
+                    "\r\n                      ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,16,15)))), ''), '') AS ATUAL, " +
+                    "\r\n       DECODE(PED.EXT_TIP_MOV_P, 2," +
+                    "\r\n       (CASE PED.EXT_COD_CPO_P" +
+                    "\r\n        WHEN 1 THEN 'CND PGTO'" +
+                    "\r\n        WHEN 2 THEN 'DT INICIAL'" +
+                    "\r\n        WHEN 3 THEN 'DT FIM'" +
+                    "\r\n        WHEN 4 THEN 'PGTO'" +
+                    "\r\n        WHEN 5 THEN 'FRETE'" +
+                    "\r\n        WHEN 6 THEN 'TRANSP'" +
+                    "\r\n        WHEN 7 THEN 'OBS'" +
+                    "\r\n        WHEN 10 THEN 'EMB'" +
+                    "\r\n        WHEN 11 THEN 'QTD PED'" +
+                    "\r\n        WHEN 12 THEN 'CUSTO FORN'" +
+                    "\r\n        WHEN 13 THEN 'DESCONTO'" +
+                    "\r\n        WHEN 14 THEN 'IPI'" +
+                    "\r\n        WHEN 15 THEN 'IPI VALOR'" +
+                    "\r\n        WHEN 18 THEN 'DESP. ACESS.'  " +
+                    "\r\n        WHEN 19 THEN 'COMPRADOR'  " +
+                    "\r\n        WHEN 20 THEN 'CUSTO TOT.'  " +
+                    "\r\n        ELSE 'OUTRO'" +
+                    "\r\n        END), " +
+                    "\r\n               ' ') AS CAMPO_ALTERADO, " +
+                    "\r\n        (SELECT 1 FROM AG1FLPED " +
+                    "\r\n          WHERE CLOJ_CARF   = PED.EXT_COD_LOJ_2" +
+                    "\r\n            AND CODFOR_CARF = PED.EXT_COD_FOR_3" +
+                    "\r\n            AND NROPED_CARF = PED.EXT_NUM_PED_2) AS SITUACAO" +
+                    "\r\nFROM AG1EPEDI PED, AA2CTIPO LOJ, AA2CTIPO FORN, AG2CAPNT, AA3CITEM" +
+                    "\r\nWHERE 1 = 1\r\n  and PED.EXT_COD_PRO_P = git_cod_item  " +
+                    "\r\n  --and PED.EXT_COD_CPO_P is null" +
+                    "\r\n  and PED.EXT_COD_PRO_P <> 0" +
+                    "\r\n  AND PED.EXT_TIP_MOV_2   IN (1)" +
+                    "\r\n  AND PED.EXT_DAT_MOV_2  between " + datainicioFormat + " and " + datafimFormat + " --datamovimentação" +
+                    //"\r\n  AND not_dta_agenda BETWEEN " + recin + " and " + recfim + " --datarecebimento" +
+                     "\r\n  AND PED.EXT_TIP_MOV_P = (" + situacao + ") " +
+                    "\r\n  and EXT_COD_FOR_3 = (" + codfor + ")--fornecedor" +
+                    //"\r\n  AND PED.EXT_COD_LOJ_2   in (" + fil + ")--filial" +
+                    // "\r\n  AND EXT_USUARIO_4 LIKE    :usuario  " +
+                    "\r\n  AND LOJ.TIP_CODIGO      = PED.EXT_COD_LOJ_P" +
+                    "\r\n  AND FORN.TIP_CODIGO     = PED.EXT_COD_FOR_3" +
+                    "\r\n  and not_nped_1 = PED.EXT_NUM_PED_P" +
+                    "\r\n  --and PED.EXT_DAT_MOV_P = not_dta_agenda" +
+                    "\r\n  AND (NOT EXISTS (SELECT 1 FROM AG1FLPED " +
+                    "\r\n                  WHERE CLOJ_CARF   = PED.EXT_COD_LOJ_2" +
+                    "\r\n                    AND CODFOR_CARF = PED.EXT_COD_FOR_3" +
+                    "\r\n                    AND NROPED_CARF = PED.EXT_NUM_PED_2) OR PED.EXT_COD_PRO_P = 0)" +
+                    "\r\n  --ORDER BY EXT_COD_LOJ_P ASC, EXT_NUM_PED_P ASC, EXT_DAT_MOV_P ASC, EXT_TIP_MOV_P ASC, EXT_COD_PRO_P ASC, EXT_COD_CPO_P ASC, EXT_HOR_MOV_P ASC" +
+                    "\r\n union all" +
+                    "\r\n SELECT PED.EXT_COD_LOJ_P || DAC(PED.EXT_COD_LOJ_P) || '-' || LOJ.TIP_NOME_FANTASIA AS LOJA," +
+                    "\r\n       PED.EXT_COD_FOR_3 || DAC(PED.EXT_COD_FOR_3) || '-' || FORN.TIP_NOME_FANTASIA AS FORNECEDOR," +
+                    "\r\n       PED.EXT_NUM_PED_P || '-' ||DAC( PED.EXT_NUM_PED_P) AS        PEDIDOS," +
+                    "\r\n       rms7to_date(PED.EXT_DAT_MOV_P) AS DATA_MOV," +
+                    "\r\n       rms7to_date(not_dta_agenda) DATA_RECEBIMENTO," +
+                    "\r\n       not_nota as nota," +
+                    "\r\n       (CASE PED.EXT_TIP_MOV_P" +
+                    "\r\n       WHEN 1 THEN 'INCLUIDO'" +
+                    "\r\n       WHEN 2 THEN 'ALTERADO'" +
+                    "\r\n       WHEN 3 THEN 'BAIXADO'" +
+                    "\r\n       WHEN 4 THEN 'CANCELADO'" +
+                    "\r\n       ELSE ' '" +
+                    "\r\n       END) AS TIPO_MOV," +
+                    "\r\n       PED.EXT_COD_PRO_P || '-' || DAC(PED.EXT_COD_PRO_P) AS PRODUTO," +
+                    "\r\n       git_DESCRICAO AS DESCRICAO," +
+                    "\r\n       SUBSTR(TRIM(TO_CHAR(PED.EXT_HOR_MOV_P,'000000')),1,2) || ':' || SUBSTR(TRIM(TO_CHAR(PED.EXT_HOR_MOV_P,'000000')),3,2)|| ':' || SUBSTR(TRIM(TO_CHAR(PED.EXT_HOR_MOV_P,'000000')),5,2) AS HORA," +
+                    "\r\n       PED.EXT_USUARIO_4," +
+                    "\r\n       DECODE(NVL(LENGTH(TRIM(TRANSLATE(EXT_DE_PARA, '+-0123456789.', ' '))),0), 0," +
+                    "\r\n              DECODE(PED.EXT_TIP_MOV_P, 2, " +
+                    "\r\n              DECODE(PED.EXT_COD_CPO_P, 12, " +
+                    "\r\n                     ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,1,13))) || ',' || ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,14,2))), " +
+                    "\r\n                     ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,1,15)))), ''), '') AS ANTERIOR," +
+                    "\r\n       DECODE(NVL(LENGTH(TRIM(TRANSLATE(EXT_DE_PARA, '+-0123456789.', ' '))),0), 0," +
+                    "\r\n       DECODE(PED.EXT_TIP_MOV_P, 2," +
+                    "\r\n              DECODE(PED.EXT_COD_CPO_P, 12, " +
+                    "\r\n                      ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,16,13))) || ',' || ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,29,2)))," +
+                    "\r\n                      ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,16,15)))), ''), '') AS ATUAL, " +
+                    "\r\n       DECODE(PED.EXT_TIP_MOV_P, 2," +
+                    "\r\n       (CASE PED.EXT_COD_CPO_P" +
+                    "\r\n        WHEN 1 THEN 'CND PGTO'" +
+                    "\r\n        WHEN 2 THEN 'DT INICIAL'" +
+                    "\r\n        WHEN 3 THEN 'DT FIM'" +
+                    "\r\n        WHEN 4 THEN 'PGTO'" +
+                    "\r\n        WHEN 5 THEN 'FRETE'" +
+                    "\r\n        WHEN 6 THEN 'TRANSP'" +
+                    "\r\n        WHEN 7 THEN 'OBS'" +
+                    "\r\n        WHEN 10 THEN 'EMB'" +
+                    "\r\n        WHEN 11 THEN 'QTD PED'" +
+                    "\r\n        WHEN 12 THEN 'CUSTO FORN'" +
+                    "\r\n        WHEN 13 THEN 'DESCONTO'" +
+                    "\r\n        WHEN 14 THEN 'IPI'" +
+                    "\r\n        WHEN 15 THEN 'IPI VALOR'" +
+                    "\r\n        WHEN 18 THEN 'DESP. ACESS.'  " +
+                    "\r\n        WHEN 19 THEN 'COMPRADOR'  " +
+                    "\r\n        WHEN 20 THEN 'CUSTO TOT.'  " +
+                    "\r\n        ELSE 'OUTRO'" +
+                    "\r\n        END), " +
+                    "\r\n        ' ') AS CAMPO_ALTERADO, " +
+                    "\r\n        (SELECT 1 FROM AG1FLPED " +
+                    "\r\n          WHERE CLOJ_CARF   = PED.EXT_COD_LOJ_2" +
+                    "\r\n            AND CODFOR_CARF = PED.EXT_COD_FOR_3" +
+                    "\r\n            AND NROPED_CARF = PED.EXT_NUM_PED_2) AS SITUACAO" +
+                    "\r\nFROM AG1EPEDI PED, AA2CTIPO LOJ, AA2CTIPO FORN, AG2CAPNT, AA3CITEM" +
+                    "\r\nWHERE 1 = 1" +
+                    "\r\n  and PED.EXT_COD_CPO_P in (11,12,18)  " +
+                    "\r\n   and PED.EXT_COD_PRO_P = git_cod_item " +
+                    "\r\n  AND PED.EXT_TIP_MOV_2   IN (2)" +
+                    "\r\n  AND PED.EXT_DAT_MOV_2  between " + datainicioFormat + " and " + datafimFormat + " --datamovimentação" +
+                    //"\r\n  AND not_dta_agenda BETWEEN " + recin + " and " + recfim + " --datarecebimento" +
+                     "\r\n  AND PED.EXT_TIP_MOV_P = (" + situacao + ") " +
+                     "\r\n  and EXT_COD_FOR_3 = (" + codfor + ") --fornecedor" +
+                    // "\r\n  AND EXT_USUARIO_4 LIKE    :usuario  " +
+                    //"\r\n  AND PED.EXT_COD_LOJ_2   in (" + fil + ")--filial" +
+                    "\r\n  AND LOJ.TIP_CODIGO      = PED.EXT_COD_LOJ_P" +
+                    "\r\n  AND FORN.TIP_CODIGO     = PED.EXT_COD_FOR_3" +
+                    "\r\n  and not_nped_1 = PED.EXT_NUM_PED_P" +
+                    "\r\n  and PED.EXT_DAT_MOV_P = not_dta_agenda" +
+                    "\r\n  AND (NOT EXISTS (SELECT 1 FROM AG1FLPED " +
+                    "\r\n                  WHERE CLOJ_CARF   = PED.EXT_COD_LOJ_2" +
+                    "\r\n                    AND CODFOR_CARF = PED.EXT_COD_FOR_3" +
+                    "\r\n                    AND NROPED_CARF = PED.EXT_NUM_PED_2) OR PED.EXT_COD_PRO_P = 0)" +
+                    "\r\n  --ORDER BY EXT_COD_LOJ_P ASC, EXT_NUM_PED_P ASC, EXT_DAT_MOV_P ASC, EXT_TIP_MOV_P ASC, EXT_COD_PRO_P ASC, EXT_COD_CPO_P ASC, EXT_HOR_MOV_P ASC\r\n  \r\n";
+            }
+
+            else if (textBox2.Text == "" && textBox1.Text == "" && comboBox1.Text != "" && comboBox2.SelectedItem == null)
+            {
+                //MessageBox.Show($"9 somente situação");
+                sqlQuery = "SELECT DISTINCT PED.EXT_COD_LOJ_P || DAC(PED.EXT_COD_LOJ_P) || '-' || LOJ.TIP_NOME_FANTASIA AS LOJA," +
+                    "\r\n       PED.EXT_COD_FOR_3 || DAC(PED.EXT_COD_FOR_3) || '-' || FORN.TIP_NOME_FANTASIA AS FORNECEDOR," +
+                    "\r\n       PED.EXT_NUM_PED_P || '-' ||DAC( PED.EXT_NUM_PED_P) AS        PEDIDOS," +
+                    "\r\n       rms7to_date(PED.EXT_DAT_MOV_P) AS DATA_MOV," +
+                    "\r\n       rms7to_date(not_dta_agenda) DATA_RECEBIMENTO," +
+                    "\r\n       not_nota as nota," +
+                    "\r\n       (CASE PED.EXT_TIP_MOV_P" +
+                    "\r\n       WHEN 1 THEN 'INCLUIDO'" +
+                    "\r\n       WHEN 2 THEN 'ALTERADO'" +
+                    "\r\n       WHEN 3 THEN 'BAIXADO'" +
+                    "\r\n       WHEN 4 THEN 'CANCELADO'" +
+                    "\r\n       ELSE ' '" +
+                    "\r\n       END) AS TIPO_MOV," +
+                    "\r\n       PED.EXT_COD_PRO_P || '-' || DAC(PED.EXT_COD_PRO_P) AS PRODUTO," +
+                    "\r\n       git_DESCRICAO AS DESCRICAO," +
+                    "\r\n       SUBSTR(TRIM(TO_CHAR(PED.EXT_HOR_MOV_P,'000000')),1,2) || ':' || SUBSTR(TRIM(TO_CHAR(PED.EXT_HOR_MOV_P,'000000')),3,2)|| ':' || SUBSTR(TRIM(TO_CHAR(PED.EXT_HOR_MOV_P,'000000')),5,2) AS HORA," +
+                    "\r\n       PED.EXT_USUARIO_4," +
+                    "\r\n       DECODE(NVL(LENGTH(TRIM(TRANSLATE(EXT_DE_PARA, '+-0123456789.', ' '))),0), 0," +
+                    "\r\n              DECODE(PED.EXT_TIP_MOV_P, 2, " +
+                    "\r\n              DECODE(PED.EXT_COD_CPO_P, 12, " +
+                    "\r\n                     ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,1,13))) || ',' || ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,14,2))), " +
+                    "\r\n                     ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,1,15)))), ''), '') AS ANTERIOR," +
+                    "\r\n       DECODE(NVL(LENGTH(TRIM(TRANSLATE(EXT_DE_PARA, '+-0123456789.', ' '))),0), 0," +
+                    "\r\n       DECODE(PED.EXT_TIP_MOV_P, 2," +
+                    "\r\n              DECODE(PED.EXT_COD_CPO_P, 12, " +
+                    "\r\n                      ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,16,13))) || ',' || ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,29,2)))," +
+                    "\r\n                      ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,16,15)))), ''), '') AS ATUAL, " +
+                    "\r\n       DECODE(PED.EXT_TIP_MOV_P, 2," +
+                    "\r\n       (CASE PED.EXT_COD_CPO_P" +
+                    "\r\n        WHEN 1 THEN 'CND PGTO'" +
+                    "\r\n        WHEN 2 THEN 'DT INICIAL'" +
+                    "\r\n        WHEN 3 THEN 'DT FIM'" +
+                    "\r\n        WHEN 4 THEN 'PGTO'" +
+                    "\r\n        WHEN 5 THEN 'FRETE'" +
+                    "\r\n        WHEN 6 THEN 'TRANSP'" +
+                    "\r\n        WHEN 7 THEN 'OBS'" +
+                    "\r\n        WHEN 10 THEN 'EMB'" +
+                    "\r\n        WHEN 11 THEN 'QTD PED'" +
+                    "\r\n        WHEN 12 THEN 'CUSTO FORN'" +
+                    "\r\n        WHEN 13 THEN 'DESCONTO'" +
+                    "\r\n        WHEN 14 THEN 'IPI'" +
+                    "\r\n        WHEN 15 THEN 'IPI VALOR'" +
+                    "\r\n        WHEN 18 THEN 'DESP. ACESS.'  " +
+                    "\r\n        WHEN 19 THEN 'COMPRADOR'  " +
+                    "\r\n        WHEN 20 THEN 'CUSTO TOT.'  " +
+                    "\r\n        ELSE 'OUTRO'" +
+                    "\r\n        END), " +
+                    "\r\n               ' ') AS CAMPO_ALTERADO, " +
+                    "\r\n        (SELECT 1 FROM AG1FLPED " +
+                    "\r\n          WHERE CLOJ_CARF   = PED.EXT_COD_LOJ_2" +
+                    "\r\n            AND CODFOR_CARF = PED.EXT_COD_FOR_3" +
+                    "\r\n            AND NROPED_CARF = PED.EXT_NUM_PED_2) AS SITUACAO" +
+                    "\r\nFROM AG1EPEDI PED, AA2CTIPO LOJ, AA2CTIPO FORN, AG2CAPNT, AA3CITEM" +
+                    "\r\nWHERE 1 = 1\r\n  and PED.EXT_COD_PRO_P = git_cod_item  " +
+                    "\r\n  --and PED.EXT_COD_CPO_P is null" +
+                    "\r\n  and PED.EXT_COD_PRO_P <> 0" +
+                    "\r\n  AND PED.EXT_TIP_MOV_2   IN (1)" +
+                    "\r\n  AND PED.EXT_DAT_MOV_2  between " + datainicioFormat + " and " + datafimFormat + " --datamovimentação" +
+                     //"\r\n  AND not_dta_agenda BETWEEN " + recin + " and " + recfim + " --datarecebimento" +
+                     "\r\n  AND PED.EXT_TIP_MOV_P = (" + situacao + ") " +
+                    //"\r\n  and EXT_COD_FOR_3 = (" + codfor + ")--fornecedor" +
+                    //"\r\n  AND PED.EXT_COD_LOJ_2   in (" + fil + ")--filial" +
+                    // "\r\n  AND EXT_USUARIO_4 LIKE    :usuario  " +
+                    "\r\n  AND LOJ.TIP_CODIGO      = PED.EXT_COD_LOJ_P" +
+                    "\r\n  AND FORN.TIP_CODIGO     = PED.EXT_COD_FOR_3" +
+                    "\r\n  and not_nped_1 = PED.EXT_NUM_PED_P" +
+                    "\r\n  --and PED.EXT_DAT_MOV_P = not_dta_agenda" +
+                    "\r\n  AND (NOT EXISTS (SELECT 1 FROM AG1FLPED " +
+                    "\r\n                  WHERE CLOJ_CARF   = PED.EXT_COD_LOJ_2" +
+                    "\r\n                    AND CODFOR_CARF = PED.EXT_COD_FOR_3" +
+                    "\r\n                    AND NROPED_CARF = PED.EXT_NUM_PED_2) OR PED.EXT_COD_PRO_P = 0)" +
+                    "\r\n  --ORDER BY EXT_COD_LOJ_P ASC, EXT_NUM_PED_P ASC, EXT_DAT_MOV_P ASC, EXT_TIP_MOV_P ASC, EXT_COD_PRO_P ASC, EXT_COD_CPO_P ASC, EXT_HOR_MOV_P ASC" +
+                    "\r\n union all" +
+                    "\r\n SELECT PED.EXT_COD_LOJ_P || DAC(PED.EXT_COD_LOJ_P) || '-' || LOJ.TIP_NOME_FANTASIA AS LOJA," +
+                    "\r\n       PED.EXT_COD_FOR_3 || DAC(PED.EXT_COD_FOR_3) || '-' || FORN.TIP_NOME_FANTASIA AS FORNECEDOR," +
+                    "\r\n       PED.EXT_NUM_PED_P || '-' ||DAC( PED.EXT_NUM_PED_P) AS        PEDIDOS," +
+                    "\r\n       rms7to_date(PED.EXT_DAT_MOV_P) AS DATA_MOV," +
+                    "\r\n       rms7to_date(not_dta_agenda) DATA_RECEBIMENTO," +
+                    "\r\n       not_nota as nota," +
+                    "\r\n       (CASE PED.EXT_TIP_MOV_P" +
+                    "\r\n       WHEN 1 THEN 'INCLUIDO'" +
+                    "\r\n       WHEN 2 THEN 'ALTERADO'" +
+                    "\r\n       WHEN 3 THEN 'BAIXADO'" +
+                    "\r\n       WHEN 4 THEN 'CANCELADO'" +
+                    "\r\n       ELSE ' '" +
+                    "\r\n       END) AS TIPO_MOV," +
+                    "\r\n       PED.EXT_COD_PRO_P || '-' || DAC(PED.EXT_COD_PRO_P) AS PRODUTO," +
+                    "\r\n       git_DESCRICAO AS DESCRICAO," +
+                    "\r\n       SUBSTR(TRIM(TO_CHAR(PED.EXT_HOR_MOV_P,'000000')),1,2) || ':' || SUBSTR(TRIM(TO_CHAR(PED.EXT_HOR_MOV_P,'000000')),3,2)|| ':' || SUBSTR(TRIM(TO_CHAR(PED.EXT_HOR_MOV_P,'000000')),5,2) AS HORA," +
+                    "\r\n       PED.EXT_USUARIO_4," +
+                    "\r\n       DECODE(NVL(LENGTH(TRIM(TRANSLATE(EXT_DE_PARA, '+-0123456789.', ' '))),0), 0," +
+                    "\r\n              DECODE(PED.EXT_TIP_MOV_P, 2, " +
+                    "\r\n              DECODE(PED.EXT_COD_CPO_P, 12, " +
+                    "\r\n                     ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,1,13))) || ',' || ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,14,2))), " +
+                    "\r\n                     ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,1,15)))), ''), '') AS ANTERIOR," +
+                    "\r\n       DECODE(NVL(LENGTH(TRIM(TRANSLATE(EXT_DE_PARA, '+-0123456789.', ' '))),0), 0," +
+                    "\r\n       DECODE(PED.EXT_TIP_MOV_P, 2," +
+                    "\r\n              DECODE(PED.EXT_COD_CPO_P, 12, " +
+                    "\r\n                      ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,16,13))) || ',' || ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,29,2)))," +
+                    "\r\n                      ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,16,15)))), ''), '') AS ATUAL, " +
+                    "\r\n       DECODE(PED.EXT_TIP_MOV_P, 2," +
+                    "\r\n       (CASE PED.EXT_COD_CPO_P" +
+                    "\r\n        WHEN 1 THEN 'CND PGTO'" +
+                    "\r\n        WHEN 2 THEN 'DT INICIAL'" +
+                    "\r\n        WHEN 3 THEN 'DT FIM'" +
+                    "\r\n        WHEN 4 THEN 'PGTO'" +
+                    "\r\n        WHEN 5 THEN 'FRETE'" +
+                    "\r\n        WHEN 6 THEN 'TRANSP'" +
+                    "\r\n        WHEN 7 THEN 'OBS'" +
+                    "\r\n        WHEN 10 THEN 'EMB'" +
+                    "\r\n        WHEN 11 THEN 'QTD PED'" +
+                    "\r\n        WHEN 12 THEN 'CUSTO FORN'" +
+                    "\r\n        WHEN 13 THEN 'DESCONTO'" +
+                    "\r\n        WHEN 14 THEN 'IPI'" +
+                    "\r\n        WHEN 15 THEN 'IPI VALOR'" +
+                    "\r\n        WHEN 18 THEN 'DESP. ACESS.'  " +
+                    "\r\n        WHEN 19 THEN 'COMPRADOR'  " +
+                    "\r\n        WHEN 20 THEN 'CUSTO TOT.'  " +
+                    "\r\n        ELSE 'OUTRO'" +
+                    "\r\n        END), " +
+                    "\r\n        ' ') AS CAMPO_ALTERADO, " +
+                    "\r\n        (SELECT 1 FROM AG1FLPED " +
+                    "\r\n          WHERE CLOJ_CARF   = PED.EXT_COD_LOJ_2" +
+                    "\r\n            AND CODFOR_CARF = PED.EXT_COD_FOR_3" +
+                    "\r\n            AND NROPED_CARF = PED.EXT_NUM_PED_2) AS SITUACAO" +
+                    "\r\nFROM AG1EPEDI PED, AA2CTIPO LOJ, AA2CTIPO FORN, AG2CAPNT, AA3CITEM" +
+                    "\r\nWHERE 1 = 1" +
+                    "\r\n  and PED.EXT_COD_CPO_P in (11,12,18)  " +
+                    "\r\n   and PED.EXT_COD_PRO_P = git_cod_item " +
+                    "\r\n  AND PED.EXT_TIP_MOV_2   IN (2)" +
+                    "\r\n  AND PED.EXT_DAT_MOV_2  between " + datainicioFormat + " and " + datafimFormat + " --datamovimentação" +
+                     //"\r\n  AND not_dta_agenda BETWEEN " + recin + " and " + recfim + " --datarecebimento" +
+                     "\r\n  AND PED.EXT_TIP_MOV_P = (" + situacao + ") " +
+                     //"\r\n  and EXT_COD_FOR_3 = (" + codfor + ") --fornecedor" +
+                    // "\r\n  AND EXT_USUARIO_4 LIKE    :usuario  " +
+                    //"\r\n  AND PED.EXT_COD_LOJ_2   in (" + fil + ")--filial" +
+                    "\r\n  AND LOJ.TIP_CODIGO      = PED.EXT_COD_LOJ_P" +
+                    "\r\n  AND FORN.TIP_CODIGO     = PED.EXT_COD_FOR_3" +
+                    "\r\n  and not_nped_1 = PED.EXT_NUM_PED_P" +
+                    "\r\n  and PED.EXT_DAT_MOV_P = not_dta_agenda" +
+                    "\r\n  AND (NOT EXISTS (SELECT 1 FROM AG1FLPED " +
+                    "\r\n                  WHERE CLOJ_CARF   = PED.EXT_COD_LOJ_2" +
+                    "\r\n                    AND CODFOR_CARF = PED.EXT_COD_FOR_3" +
+                    "\r\n                    AND NROPED_CARF = PED.EXT_NUM_PED_2) OR PED.EXT_COD_PRO_P = 0)" +
+                    "\r\n  --ORDER BY EXT_COD_LOJ_P ASC, EXT_NUM_PED_P ASC, EXT_DAT_MOV_P ASC, EXT_TIP_MOV_P ASC, EXT_COD_PRO_P ASC, EXT_COD_CPO_P ASC, EXT_HOR_MOV_P ASC\r\n  \r\n";
+            }
+
+            //sem usuario,sem fornecedor,sem situação,sem filial apenas data
+            else 
+            {
+                //MessageBox.Show($"10 Sem Filtro Apenas data");
+                sqlQuery = "SELECT DISTINCT PED.EXT_COD_LOJ_P || DAC(PED.EXT_COD_LOJ_P) || '-' || LOJ.TIP_NOME_FANTASIA AS LOJA," +
+                    "\r\n       PED.EXT_COD_FOR_3 || DAC(PED.EXT_COD_FOR_3) || '-' || FORN.TIP_NOME_FANTASIA AS FORNECEDOR," +
+                    "\r\n       PED.EXT_NUM_PED_P || '-' ||DAC( PED.EXT_NUM_PED_P) AS        PEDIDOS," +
+                    "\r\n       rms7to_date(PED.EXT_DAT_MOV_P) AS DATA_MOV," +
+                    "\r\n       rms7to_date(not_dta_agenda) DATA_RECEBIMENTO," +
+                    "\r\n       not_nota as nota," +
+                    "\r\n       (CASE PED.EXT_TIP_MOV_P" +
+                    "\r\n       WHEN 1 THEN 'INCLUIDO'" +
+                    "\r\n       WHEN 2 THEN 'ALTERADO'" +
+                    "\r\n       WHEN 3 THEN 'BAIXADO'" +
+                    "\r\n       WHEN 4 THEN 'CANCELADO'" +
+                    "\r\n       ELSE ' '" +
+                    "\r\n       END) AS TIPO_MOV," +
+                    "\r\n       PED.EXT_COD_PRO_P || '-' || DAC(PED.EXT_COD_PRO_P) AS PRODUTO," +
+                    "\r\n       git_DESCRICAO AS DESCRICAO," +
+                    "\r\n       SUBSTR(TRIM(TO_CHAR(PED.EXT_HOR_MOV_P,'000000')),1,2) || ':' || SUBSTR(TRIM(TO_CHAR(PED.EXT_HOR_MOV_P,'000000')),3,2)|| ':' || SUBSTR(TRIM(TO_CHAR(PED.EXT_HOR_MOV_P,'000000')),5,2) AS HORA," +
+                    "\r\n       PED.EXT_USUARIO_4," +
+                    "\r\n       DECODE(NVL(LENGTH(TRIM(TRANSLATE(EXT_DE_PARA, '+-0123456789.', ' '))),0), 0," +
+                    "\r\n              DECODE(PED.EXT_TIP_MOV_P, 2, " +
+                    "\r\n              DECODE(PED.EXT_COD_CPO_P, 12, " +
+                    "\r\n                     ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,1,13))) || ',' || ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,14,2))), " +
+                    "\r\n                     ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,1,15)))), ''), '') AS ANTERIOR," +
+                    "\r\n       DECODE(NVL(LENGTH(TRIM(TRANSLATE(EXT_DE_PARA, '+-0123456789.', ' '))),0), 0," +
+                    "\r\n       DECODE(PED.EXT_TIP_MOV_P, 2," +
+                    "\r\n              DECODE(PED.EXT_COD_CPO_P, 12, " +
+                    "\r\n                      ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,16,13))) || ',' || ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,29,2)))," +
+                    "\r\n                      ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,16,15)))), ''), '') AS ATUAL, " +
+                    "\r\n       DECODE(PED.EXT_TIP_MOV_P, 2," +
+                    "\r\n       (CASE PED.EXT_COD_CPO_P" +
+                    "\r\n        WHEN 1 THEN 'CND PGTO'" +
+                    "\r\n        WHEN 2 THEN 'DT INICIAL'" +
+                    "\r\n        WHEN 3 THEN 'DT FIM'" +
+                    "\r\n        WHEN 4 THEN 'PGTO'" +
+                    "\r\n        WHEN 5 THEN 'FRETE'" +
+                    "\r\n        WHEN 6 THEN 'TRANSP'" +
+                    "\r\n        WHEN 7 THEN 'OBS'" +
+                    "\r\n        WHEN 10 THEN 'EMB'" +
+                    "\r\n        WHEN 11 THEN 'QTD PED'" +
+                    "\r\n        WHEN 12 THEN 'CUSTO FORN'" +
+                    "\r\n        WHEN 13 THEN 'DESCONTO'" +
+                    "\r\n        WHEN 14 THEN 'IPI'" +
+                    "\r\n        WHEN 15 THEN 'IPI VALOR'" +
+                    "\r\n        WHEN 18 THEN 'DESP. ACESS.'  " +
+                    "\r\n        WHEN 19 THEN 'COMPRADOR'  " +
+                    "\r\n        WHEN 20 THEN 'CUSTO TOT.'  " +
+                    "\r\n        ELSE 'OUTRO'" +
+                    "\r\n        END), " +
+                    "\r\n               ' ') AS CAMPO_ALTERADO, " +
+                    "\r\n        (SELECT 1 FROM AG1FLPED " +
+                    "\r\n          WHERE CLOJ_CARF   = PED.EXT_COD_LOJ_2" +
+                    "\r\n            AND CODFOR_CARF = PED.EXT_COD_FOR_3" +
+                    "\r\n            AND NROPED_CARF = PED.EXT_NUM_PED_2) AS SITUACAO" +
+                    "\r\nFROM AG1EPEDI PED, AA2CTIPO LOJ, AA2CTIPO FORN, AG2CAPNT, AA3CITEM" +
+                    "\r\nWHERE 1 = 1\r\n  and PED.EXT_COD_PRO_P = git_cod_item  " +
+                    "\r\n  --and PED.EXT_COD_CPO_P is null" +
+                    "\r\n  and PED.EXT_COD_PRO_P <> 0" +
+                    "\r\n  AND PED.EXT_TIP_MOV_2   IN (1)" +
+                    "\r\n  AND PED.EXT_DAT_MOV_2  between " + datainicioFormat + " and " + datafimFormat + " --datamovimentação" +
+                    //"\r\n  AND not_dta_agenda BETWEEN " + recin + " and " + recfim + " --datarecebimento" +
+                    // "\r\n AND PED.EXT_TIP_MOV_P = ("+situacao+") " +
+                    //"\r\n  and EXT_COD_FOR_3 = (\"+codfor+\")--fornecedor" +
+                    //"\r\n  AND PED.EXT_COD_LOJ_2   in (" + fil + ")--filial" +
+                    //"\r\n  AND EXT_USUARIO_4 LIKE    :usuario  " +
+                    "\r\n  AND LOJ.TIP_CODIGO      = PED.EXT_COD_LOJ_P" +
+                    "\r\n  AND FORN.TIP_CODIGO     = PED.EXT_COD_FOR_3" +
+                    "\r\n  and not_nped_1 = PED.EXT_NUM_PED_P" +
+                    "\r\n  --and PED.EXT_DAT_MOV_P = not_dta_agenda" +
+                    "\r\n  AND (NOT EXISTS (SELECT 1 FROM AG1FLPED " +
+                    "\r\n                  WHERE CLOJ_CARF   = PED.EXT_COD_LOJ_2" +
+                    "\r\n                    AND CODFOR_CARF = PED.EXT_COD_FOR_3" +
+                    "\r\n                    AND NROPED_CARF = PED.EXT_NUM_PED_2) OR PED.EXT_COD_PRO_P = 0)" +
+                    "\r\n  --ORDER BY EXT_COD_LOJ_P ASC, EXT_NUM_PED_P ASC, EXT_DAT_MOV_P ASC, EXT_TIP_MOV_P ASC, EXT_COD_PRO_P ASC, EXT_COD_CPO_P ASC, EXT_HOR_MOV_P ASC" +
+                    "\r\n union all" +
+                    "\r\n SELECT PED.EXT_COD_LOJ_P || DAC(PED.EXT_COD_LOJ_P) || '-' || LOJ.TIP_NOME_FANTASIA AS LOJA," +
+                    "\r\n       PED.EXT_COD_FOR_3 || DAC(PED.EXT_COD_FOR_3) || '-' || FORN.TIP_NOME_FANTASIA AS FORNECEDOR," +
+                    "\r\n       PED.EXT_NUM_PED_P || '-' ||DAC( PED.EXT_NUM_PED_P) AS        PEDIDOS," +
+                    "\r\n       rms7to_date(PED.EXT_DAT_MOV_P) AS DATA_MOV," +
+                    "\r\n       rms7to_date(not_dta_agenda) DATA_RECEBIMENTO," +
+                    "\r\n       not_nota as nota," +
+                    "\r\n       (CASE PED.EXT_TIP_MOV_P" +
+                    "\r\n       WHEN 1 THEN 'INCLUIDO'" +
+                    "\r\n       WHEN 2 THEN 'ALTERADO'" +
+                    "\r\n       WHEN 3 THEN 'BAIXADO'" +
+                    "\r\n       WHEN 4 THEN 'CANCELADO'" +
+                    "\r\n       ELSE ' '" +
+                    "\r\n       END) AS TIPO_MOV," +
+                    "\r\n       PED.EXT_COD_PRO_P || '-' || DAC(PED.EXT_COD_PRO_P) AS PRODUTO," +
+                    "\r\n       git_DESCRICAO AS DESCRICAO," +
+                    "\r\n       SUBSTR(TRIM(TO_CHAR(PED.EXT_HOR_MOV_P,'000000')),1,2) || ':' || SUBSTR(TRIM(TO_CHAR(PED.EXT_HOR_MOV_P,'000000')),3,2)|| ':' || SUBSTR(TRIM(TO_CHAR(PED.EXT_HOR_MOV_P,'000000')),5,2) AS HORA," +
+                    "\r\n       PED.EXT_USUARIO_4," +
+                    "\r\n       DECODE(NVL(LENGTH(TRIM(TRANSLATE(EXT_DE_PARA, '+-0123456789.', ' '))),0), 0," +
+                    "\r\n              DECODE(PED.EXT_TIP_MOV_P, 2, " +
+                    "\r\n              DECODE(PED.EXT_COD_CPO_P, 12, " +
+                    "\r\n                     ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,1,13))) || ',' || ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,14,2))), " +
+                    "\r\n                     ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,1,15)))), ''), '') AS ANTERIOR," +
+                    "\r\n       DECODE(NVL(LENGTH(TRIM(TRANSLATE(EXT_DE_PARA, '+-0123456789.', ' '))),0), 0," +
+                    "\r\n       DECODE(PED.EXT_TIP_MOV_P, 2," +
+                    "\r\n              DECODE(PED.EXT_COD_CPO_P, 12, " +
+                    "\r\n                      ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,16,13))) || ',' || ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,29,2)))," +
+                    "\r\n                      ROUND(TO_NUMBER(SUBSTR(PED.EXT_DE_PARA,16,15)))), ''), '') AS ATUAL, " +
+                    "\r\n       DECODE(PED.EXT_TIP_MOV_P, 2," +
+                    "\r\n       (CASE PED.EXT_COD_CPO_P" +
+                    "\r\n        WHEN 1 THEN 'CND PGTO'" +
+                    "\r\n        WHEN 2 THEN 'DT INICIAL'" +
+                    "\r\n        WHEN 3 THEN 'DT FIM'" +
+                    "\r\n        WHEN 4 THEN 'PGTO'" +
+                    "\r\n        WHEN 5 THEN 'FRETE'" +
+                    "\r\n        WHEN 6 THEN 'TRANSP'" +
+                    "\r\n        WHEN 7 THEN 'OBS'" +
+                    "\r\n        WHEN 10 THEN 'EMB'" +
+                    "\r\n        WHEN 11 THEN 'QTD PED'" +
+                    "\r\n        WHEN 12 THEN 'CUSTO FORN'" +
+                    "\r\n        WHEN 13 THEN 'DESCONTO'" +
+                    "\r\n        WHEN 14 THEN 'IPI'" +
+                    "\r\n        WHEN 15 THEN 'IPI VALOR'" +
+                    "\r\n        WHEN 18 THEN 'DESP. ACESS.'  " +
+                    "\r\n        WHEN 19 THEN 'COMPRADOR'  " +
+                    "\r\n        WHEN 20 THEN 'CUSTO TOT.'  " +
+                    "\r\n        ELSE 'OUTRO'" +
+                    "\r\n        END), " +
+                    "\r\n        ' ') AS CAMPO_ALTERADO, " +
+                    "\r\n        (SELECT 1 FROM AG1FLPED " +
+                    "\r\n          WHERE CLOJ_CARF   = PED.EXT_COD_LOJ_2" +
+                    "\r\n            AND CODFOR_CARF = PED.EXT_COD_FOR_3" +
+                    "\r\n            AND NROPED_CARF = PED.EXT_NUM_PED_2) AS SITUACAO" +
+                    "\r\nFROM AG1EPEDI PED, AA2CTIPO LOJ, AA2CTIPO FORN, AG2CAPNT, AA3CITEM" +
+                    "\r\nWHERE 1 = 1" +
+                    "\r\n  and PED.EXT_COD_CPO_P in (11,12,18)  " +
+                    "\r\n   and PED.EXT_COD_PRO_P = git_cod_item " +
+                    "\r\n  AND PED.EXT_TIP_MOV_2   IN (2)" +
+                    "\r\n  AND PED.EXT_DAT_MOV_2  between " + datainicioFormat + " and " + datafimFormat + " --datamovimentação" +
+                    //"\r\n  AND not_dta_agenda BETWEEN " + recin + " and " + recfim + " --datarecebimento" +
+                    // "\r\n  AND PED.EXT_TIP_MOV_P = (" + situacao + ") " +
+                    //"\r\n  and EXT_COD_FOR_3 = ("+codfor+") --fornecedor" +
+                    // "\r\n  AND EXT_USUARIO_4 LIKE    :usuario  " +
+                    //"\r\n  AND PED.EXT_COD_LOJ_2   in (" + fil + ")--filial" +
+                    "\r\n  AND LOJ.TIP_CODIGO      = PED.EXT_COD_LOJ_P" +
+                    "\r\n  AND FORN.TIP_CODIGO     = PED.EXT_COD_FOR_3" +
+                    "\r\n  and not_nped_1 = PED.EXT_NUM_PED_P" +
+                    "\r\n  and PED.EXT_DAT_MOV_P = not_dta_agenda" +
+                    "\r\n  AND (NOT EXISTS (SELECT 1 FROM AG1FLPED " +
+                    "\r\n                  WHERE CLOJ_CARF   = PED.EXT_COD_LOJ_2" +
+                    "\r\n                    AND CODFOR_CARF = PED.EXT_COD_FOR_3" +
+                    "\r\n                    AND NROPED_CARF = PED.EXT_NUM_PED_2) OR PED.EXT_COD_PRO_P = 0)" +
+                    "\r\n  --ORDER BY EXT_COD_LOJ_P ASC, EXT_NUM_PED_P ASC, EXT_DAT_MOV_P ASC, EXT_TIP_MOV_P ASC, EXT_COD_PRO_P ASC, EXT_COD_CPO_P ASC, EXT_HOR_MOV_P ASC\r\n  \r\n";
+            }
 
             using (OracleConnection con = new OracleConnection(conStr))
             {
