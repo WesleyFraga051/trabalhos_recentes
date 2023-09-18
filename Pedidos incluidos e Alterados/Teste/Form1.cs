@@ -33,8 +33,6 @@ namespace Teste
             this.KeyDown += Form1_KeyDown; // Associar o evento KeyDown ao manipulador de evento
             comboBox1.Items.Add("Incluido");
             comboBox1.Items.Add("Alterado");
-            comboBox1.Items.Add("Baixado");
-            comboBox1.Items.Add("Cancelado");
             comboBox2.Items.Add("19 CD");
             comboBox2.Items.Add("27 Mercado");
             comboBox2.Items.Add("35 Atacado");
@@ -104,14 +102,6 @@ namespace Teste
                 else if (selectedItem == "Alterado")
                 {
                     situacao = 2;
-                }
-                else if (selectedItem == "Baixado")
-                {
-                    situacao = 3;
-                }
-                else if (selectedItem == "Cancelado")
-                {
-                    situacao = 4;
                 }
                 else
                 {
@@ -1928,6 +1918,8 @@ namespace Teste
 
             using (SaveFileDialog saveFileDialog = new SaveFileDialog())
             {
+                // Defina o nome de arquivo predefinido aqui
+                saveFileDialog.FileName = "Pedidos Includos,Alterados.xlsx"; // Altere o nome conforme necessário
                 saveFileDialog.Filter = "Arquivo Excel (*.xlsx)|*.xlsx";
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {

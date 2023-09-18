@@ -32,8 +32,6 @@ namespace Teste
             this.KeyDown += Form2_KeyDown; // Associar o evento KeyDown ao manipulador de evento
             comboBox1.Items.Add("Incluido");
             comboBox1.Items.Add("Alterado");
-            comboBox1.Items.Add("Baixado");
-            comboBox1.Items.Add("Cancelado");
             comboBox2.Items.Add("19 CD");
             comboBox2.Items.Add("27 Mercado");
             comboBox2.Items.Add("35 Atacado");
@@ -103,11 +101,6 @@ namespace Teste
                 {
                     situacao = 2;
                 }
-                else if (selectedItem == "Baixado")
-                {
-                    situacao = 3;
-                }
-                else { situacao = 4; }
             }
             else { }
             //MessageBox.Show($"Valor numérico associado: {situacao}");
