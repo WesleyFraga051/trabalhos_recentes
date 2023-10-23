@@ -1,0 +1,94 @@
+C:\Users\analista.dev\Desktop\Projetos C#\Consulta Vencimento\Consulta Vencimento\Consulta Vencimento\bin\Debug\Consulta Vencimento.exe.config
+C:\Users\analista.dev\Desktop\Projetos C#\Consulta Vencimento\Consulta Vencimento\Consulta Vencimento\bin\Debug\Consulta Vencimento.exe
+C:\Users\analista.dev\Desktop\Projetos C#\Consulta Vencimento\Consulta Vencimento\Consulta Vencimento\bin\Debug\Consulta Vencimento.pdb
+C:\Users\analista.dev\Desktop\Projetos C#\Consulta Vencimento\Consulta Vencimento\Consulta Vencimento\obj\Debug\Consulta Vencimento.csproj.AssemblyReference.cache
+C:\Users\analista.dev\Desktop\Projetos C#\Consulta Vencimento\Consulta Vencimento\Consulta Vencimento\obj\Debug\Consulta_Vencimento.Form1.resources
+C:\Users\analista.dev\Desktop\Projetos C#\Consulta Vencimento\Consulta Vencimento\Consulta Vencimento\obj\Debug\Consulta_Vencimento.Properties.Resources.resources
+C:\Users\analista.dev\Desktop\Projetos C#\Consulta Vencimento\Consulta Vencimento\Consulta Vencimento\obj\Debug\Consulta Vencimento.csproj.GenerateResource.cache
+C:\Users\analista.dev\Desktop\Projetos C#\Consulta Vencimento\Consulta Vencimento\Consulta Vencimento\obj\Debug\Consulta Vencimento.csproj.CoreCompileInputs.cache
+C:\Users\analista.dev\Desktop\Projetos C#\Consulta Vencimento\Consulta Vencimento\Consulta Vencimento\obj\Debug\Consulta Vencimento.exe
+C:\Users\analista.dev\Desktop\Projetos C#\Consulta Vencimento\Consulta Vencimento\Consulta Vencimento\obj\Debug\Consulta Vencimento.pdb
+C:\Users\analista.dev\Desktop\Projetos C#\Consulta Vencimento\Consulta Vencimento\Consulta Vencimento\bin\Debug\ClosedXML.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Consulta Vencimento\Consulta Vencimento\Consulta Vencimento\bin\Debug\DocumentFormat.OpenXml.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Consulta Vencimento\Consulta Vencimento\Consulta Vencimento\bin\Debug\EPPlus.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Consulta Vencimento\Consulta Vencimento\Consulta Vencimento\bin\Debug\EPPlus.Interfaces.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Consulta Vencimento\Consulta Vencimento\Consulta Vencimento\bin\Debug\EPPlus.System.Drawing.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Consulta Vencimento\Consulta Vencimento\Consulta Vencimento\bin\Debug\ExcelNumberFormat.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Consulta Vencimento\Consulta Vencimento\Consulta Vencimento\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Consulta Vencimento\Consulta Vencimento\Consulta Vencimento\bin\Debug\Microsoft.IO.RecyclableMemoryStream.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Consulta Vencimento\Consulta Vencimento\Consulta Vencimento\bin\Debug\Oracle.ManagedDataAccess.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Consulta Vencimento\Consulta Vencimento\Consulta Vencimento\bin\Debug\SixLabors.Fonts.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Consulta Vencimento\Consulta Vencimento\Consulta Vencimento\bin\Debug\System.Buffers.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Consulta Vencimento\Consulta Vencimento\Consulta Vencimento\bin\Debug\System.IO.Packaging.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Consulta Vencimento\Consulta Vencimento\Consulta Vencimento\bin\Debug\System.Memory.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Consulta Vencimento\Consulta Vencimento\Consulta Vencimento\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Consulta Vencimento\Consulta Vencimento\Consulta Vencimento\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Consulta Vencimento\Consulta Vencimento\Consulta Vencimento\bin\Debug\System.Text.Encodings.Web.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Consulta Vencimento\Consulta Vencimento\Consulta Vencimento\bin\Debug\System.Text.Json.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Consulta Vencimento\Consulta Vencimento\Consulta Vencimento\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Consulta Vencimento\Consulta Vencimento\Consulta Vencimento\bin\Debug\System.ValueTuple.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Consulta Vencimento\Consulta Vencimento\Consulta Vencimento\bin\Debug\XLParser.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Consulta Vencimento\Consulta Vencimento\Consulta Vencimento\bin\Debug\ClosedXML.xml
+C:\Users\analista.dev\Desktop\Projetos C#\Consulta Vencimento\Consulta Vencimento\Consulta Vencimento\bin\Debug\DocumentFormat.OpenXml.xml
+C:\Users\analista.dev\Desktop\Projetos C#\Consulta Vencimento\Consulta Vencimento\Consulta Vencimento\bin\Debug\EPPlus.xml
+C:\Users\analista.dev\Desktop\Projetos C#\Consulta Vencimento\Consulta Vencimento\Consulta Vencimento\bin\Debug\ExcelNumberFormat.xml
+C:\Users\analista.dev\Desktop\Projetos C#\Consulta Vencimento\Consulta Vencimento\Consulta Vencimento\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+C:\Users\analista.dev\Desktop\Projetos C#\Consulta Vencimento\Consulta Vencimento\Consulta Vencimento\bin\Debug\Microsoft.IO.RecyclableMemoryStream.xml
+C:\Users\analista.dev\Desktop\Projetos C#\Consulta Vencimento\Consulta Vencimento\Consulta Vencimento\bin\Debug\SixLabors.Fonts.xml
+C:\Users\analista.dev\Desktop\Projetos C#\Consulta Vencimento\Consulta Vencimento\Consulta Vencimento\bin\Debug\System.Buffers.xml
+C:\Users\analista.dev\Desktop\Projetos C#\Consulta Vencimento\Consulta Vencimento\Consulta Vencimento\bin\Debug\System.IO.Packaging.xml
+C:\Users\analista.dev\Desktop\Projetos C#\Consulta Vencimento\Consulta Vencimento\Consulta Vencimento\bin\Debug\System.Memory.xml
+C:\Users\analista.dev\Desktop\Projetos C#\Consulta Vencimento\Consulta Vencimento\Consulta Vencimento\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\analista.dev\Desktop\Projetos C#\Consulta Vencimento\Consulta Vencimento\Consulta Vencimento\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\analista.dev\Desktop\Projetos C#\Consulta Vencimento\Consulta Vencimento\Consulta Vencimento\bin\Debug\System.Text.Encodings.Web.xml
+C:\Users\analista.dev\Desktop\Projetos C#\Consulta Vencimento\Consulta Vencimento\Consulta Vencimento\bin\Debug\System.Text.Json.xml
+C:\Users\analista.dev\Desktop\Projetos C#\Consulta Vencimento\Consulta Vencimento\Consulta Vencimento\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\analista.dev\Desktop\Projetos C#\Consulta Vencimento\Consulta Vencimento\Consulta Vencimento\bin\Debug\System.ValueTuple.xml
+C:\Users\analista.dev\Desktop\Projetos C#\Consulta Vencimento\Consulta Vencimento\Consulta Vencimento\obj\Debug\Consulta Vencimento.csproj.CopyComplete
+C:\Users\analista.dev\Desktop\Projetos C#\Nova pasta\Email\Email\Consulta Vencimento\obj\Debug\Consulta Vencimento.csproj.AssemblyReference.cache
+C:\Users\analista.dev\Desktop\Projetos C#\Nova pasta\Email\Email\Consulta Vencimento\obj\Debug\Consulta_Vencimento.Form1.resources
+C:\Users\analista.dev\Desktop\Projetos C#\Nova pasta\Email\Email\Consulta Vencimento\obj\Debug\Consulta_Vencimento.Properties.Resources.resources
+C:\Users\analista.dev\Desktop\Projetos C#\Nova pasta\Email\Email\Consulta Vencimento\obj\Debug\Consulta Vencimento.csproj.GenerateResource.cache
+C:\Users\analista.dev\Desktop\Projetos C#\Nova pasta\Email\Email\Consulta Vencimento\obj\Debug\Consulta Vencimento.csproj.CoreCompileInputs.cache
+C:\Users\analista.dev\Desktop\Projetos C#\Nova pasta\Email\Email\Consulta Vencimento\obj\Debug\Consulta Vencimento.exe
+C:\Users\analista.dev\Desktop\Projetos C#\Nova pasta\Email\Email\Consulta Vencimento\obj\Debug\Consulta Vencimento.pdb
+C:\Users\analista.dev\Desktop\Projetos C#\Nova pasta\Email\Email\Consulta Vencimento\bin\Debug\Consulta Vencimento.exe.config
+C:\Users\analista.dev\Desktop\Projetos C#\Nova pasta\Email\Email\Consulta Vencimento\bin\Debug\Consulta Vencimento.exe
+C:\Users\analista.dev\Desktop\Projetos C#\Nova pasta\Email\Email\Consulta Vencimento\bin\Debug\Consulta Vencimento.pdb
+C:\Users\analista.dev\Desktop\Projetos C#\Nova pasta\Email\Email\Consulta Vencimento\bin\Debug\ClosedXML.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Nova pasta\Email\Email\Consulta Vencimento\bin\Debug\DocumentFormat.OpenXml.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Nova pasta\Email\Email\Consulta Vencimento\bin\Debug\EPPlus.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Nova pasta\Email\Email\Consulta Vencimento\bin\Debug\EPPlus.Interfaces.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Nova pasta\Email\Email\Consulta Vencimento\bin\Debug\EPPlus.System.Drawing.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Nova pasta\Email\Email\Consulta Vencimento\bin\Debug\ExcelNumberFormat.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Nova pasta\Email\Email\Consulta Vencimento\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Nova pasta\Email\Email\Consulta Vencimento\bin\Debug\Microsoft.IO.RecyclableMemoryStream.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Nova pasta\Email\Email\Consulta Vencimento\bin\Debug\Oracle.ManagedDataAccess.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Nova pasta\Email\Email\Consulta Vencimento\bin\Debug\SixLabors.Fonts.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Nova pasta\Email\Email\Consulta Vencimento\bin\Debug\System.Buffers.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Nova pasta\Email\Email\Consulta Vencimento\bin\Debug\System.IO.Packaging.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Nova pasta\Email\Email\Consulta Vencimento\bin\Debug\System.Memory.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Nova pasta\Email\Email\Consulta Vencimento\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Nova pasta\Email\Email\Consulta Vencimento\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Nova pasta\Email\Email\Consulta Vencimento\bin\Debug\System.Text.Encodings.Web.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Nova pasta\Email\Email\Consulta Vencimento\bin\Debug\System.Text.Json.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Nova pasta\Email\Email\Consulta Vencimento\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Nova pasta\Email\Email\Consulta Vencimento\bin\Debug\System.ValueTuple.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Nova pasta\Email\Email\Consulta Vencimento\bin\Debug\XLParser.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Nova pasta\Email\Email\Consulta Vencimento\bin\Debug\ClosedXML.xml
+C:\Users\analista.dev\Desktop\Projetos C#\Nova pasta\Email\Email\Consulta Vencimento\bin\Debug\DocumentFormat.OpenXml.xml
+C:\Users\analista.dev\Desktop\Projetos C#\Nova pasta\Email\Email\Consulta Vencimento\bin\Debug\EPPlus.xml
+C:\Users\analista.dev\Desktop\Projetos C#\Nova pasta\Email\Email\Consulta Vencimento\bin\Debug\ExcelNumberFormat.xml
+C:\Users\analista.dev\Desktop\Projetos C#\Nova pasta\Email\Email\Consulta Vencimento\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+C:\Users\analista.dev\Desktop\Projetos C#\Nova pasta\Email\Email\Consulta Vencimento\bin\Debug\Microsoft.IO.RecyclableMemoryStream.xml
+C:\Users\analista.dev\Desktop\Projetos C#\Nova pasta\Email\Email\Consulta Vencimento\bin\Debug\SixLabors.Fonts.xml
+C:\Users\analista.dev\Desktop\Projetos C#\Nova pasta\Email\Email\Consulta Vencimento\bin\Debug\System.Buffers.xml
+C:\Users\analista.dev\Desktop\Projetos C#\Nova pasta\Email\Email\Consulta Vencimento\bin\Debug\System.IO.Packaging.xml
+C:\Users\analista.dev\Desktop\Projetos C#\Nova pasta\Email\Email\Consulta Vencimento\bin\Debug\System.Memory.xml
+C:\Users\analista.dev\Desktop\Projetos C#\Nova pasta\Email\Email\Consulta Vencimento\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\analista.dev\Desktop\Projetos C#\Nova pasta\Email\Email\Consulta Vencimento\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\analista.dev\Desktop\Projetos C#\Nova pasta\Email\Email\Consulta Vencimento\bin\Debug\System.Text.Encodings.Web.xml
+C:\Users\analista.dev\Desktop\Projetos C#\Nova pasta\Email\Email\Consulta Vencimento\bin\Debug\System.Text.Json.xml
+C:\Users\analista.dev\Desktop\Projetos C#\Nova pasta\Email\Email\Consulta Vencimento\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\analista.dev\Desktop\Projetos C#\Nova pasta\Email\Email\Consulta Vencimento\bin\Debug\System.ValueTuple.xml
+C:\Users\analista.dev\Desktop\Projetos C#\Nova pasta\Email\Email\Consulta Vencimento\obj\Debug\Consulta Vencimento.csproj.CopyComplete
