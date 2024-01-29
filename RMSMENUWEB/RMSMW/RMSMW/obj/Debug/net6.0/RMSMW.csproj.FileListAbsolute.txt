@@ -1,0 +1,15 @@
+C:\Users\analista.dev\Desktop\Projetos C#\RMSMENUWEB\RMSMW\RMSMW\bin\Debug\net6.0\RMSMW.exe
+C:\Users\analista.dev\Desktop\Projetos C#\RMSMENUWEB\RMSMW\RMSMW\bin\Debug\net6.0\RMSMW.deps.json
+C:\Users\analista.dev\Desktop\Projetos C#\RMSMENUWEB\RMSMW\RMSMW\bin\Debug\net6.0\RMSMW.runtimeconfig.json
+C:\Users\analista.dev\Desktop\Projetos C#\RMSMENUWEB\RMSMW\RMSMW\bin\Debug\net6.0\RMSMW.dll
+C:\Users\analista.dev\Desktop\Projetos C#\RMSMENUWEB\RMSMW\RMSMW\bin\Debug\net6.0\RMSMW.pdb
+C:\Users\analista.dev\Desktop\Projetos C#\RMSMENUWEB\RMSMW\RMSMW\obj\Debug\net6.0\RMSMW.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\analista.dev\Desktop\Projetos C#\RMSMENUWEB\RMSMW\RMSMW\obj\Debug\net6.0\RMSMW.AssemblyInfoInputs.cache
+C:\Users\analista.dev\Desktop\Projetos C#\RMSMENUWEB\RMSMW\RMSMW\obj\Debug\net6.0\RMSMW.AssemblyInfo.cs
+C:\Users\analista.dev\Desktop\Projetos C#\RMSMENUWEB\RMSMW\RMSMW\obj\Debug\net6.0\RMSMW.csproj.CoreCompileInputs.cache
+C:\Users\analista.dev\Desktop\Projetos C#\RMSMENUWEB\RMSMW\RMSMW\obj\Debug\net6.0\RMSMW.sourcelink.json
+C:\Users\analista.dev\Desktop\Projetos C#\RMSMENUWEB\RMSMW\RMSMW\obj\Debug\net6.0\RMSMW.dll
+C:\Users\analista.dev\Desktop\Projetos C#\RMSMENUWEB\RMSMW\RMSMW\obj\Debug\net6.0\refint\RMSMW.dll
+C:\Users\analista.dev\Desktop\Projetos C#\RMSMENUWEB\RMSMW\RMSMW\obj\Debug\net6.0\RMSMW.pdb
+C:\Users\analista.dev\Desktop\Projetos C#\RMSMENUWEB\RMSMW\RMSMW\obj\Debug\net6.0\RMSMW.genruntimeconfig.cache
+C:\Users\analista.dev\Desktop\Projetos C#\RMSMENUWEB\RMSMW\RMSMW\obj\Debug\net6.0\ref\RMSMW.dll
