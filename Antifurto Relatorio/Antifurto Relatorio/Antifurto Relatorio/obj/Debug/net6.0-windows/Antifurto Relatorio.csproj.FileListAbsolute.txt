@@ -1,0 +1,34 @@
+C:\Users\analista.dev\Desktop\Projetos C#\Antifurto Relatorio\Antifurto Relatorio\Antifurto Relatorio\obj\Debug\net6.0-windows\Antifurto Relatorio.csproj.AssemblyReference.cache
+C:\Users\analista.dev\Desktop\Projetos C#\Antifurto Relatorio\Antifurto Relatorio\Antifurto Relatorio\obj\Debug\net6.0-windows\Antifurto_Relatorio.Form1.resources
+C:\Users\analista.dev\Desktop\Projetos C#\Antifurto Relatorio\Antifurto Relatorio\Antifurto Relatorio\obj\Debug\net6.0-windows\Antifurto Relatorio.csproj.GenerateResource.cache
+C:\Users\analista.dev\Desktop\Projetos C#\Antifurto Relatorio\Antifurto Relatorio\Antifurto Relatorio\obj\Debug\net6.0-windows\Antifurto Relatorio.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\analista.dev\Desktop\Projetos C#\Antifurto Relatorio\Antifurto Relatorio\Antifurto Relatorio\obj\Debug\net6.0-windows\Antifurto Relatorio.AssemblyInfoInputs.cache
+C:\Users\analista.dev\Desktop\Projetos C#\Antifurto Relatorio\Antifurto Relatorio\Antifurto Relatorio\obj\Debug\net6.0-windows\Antifurto Relatorio.AssemblyInfo.cs
+C:\Users\analista.dev\Desktop\Projetos C#\Antifurto Relatorio\Antifurto Relatorio\Antifurto Relatorio\obj\Debug\net6.0-windows\Antifurto Relatorio.csproj.CoreCompileInputs.cache
+C:\Users\analista.dev\Desktop\Projetos C#\Antifurto Relatorio\Antifurto Relatorio\Antifurto Relatorio\obj\Debug\net6.0-windows\Antifurto Relatorio.sourcelink.json
+C:\Users\analista.dev\Desktop\Projetos C#\Antifurto Relatorio\Antifurto Relatorio\Antifurto Relatorio\bin\Debug\net6.0-windows\Antifurto Relatorio.exe
+C:\Users\analista.dev\Desktop\Projetos C#\Antifurto Relatorio\Antifurto Relatorio\Antifurto Relatorio\bin\Debug\net6.0-windows\Antifurto Relatorio.deps.json
+C:\Users\analista.dev\Desktop\Projetos C#\Antifurto Relatorio\Antifurto Relatorio\Antifurto Relatorio\bin\Debug\net6.0-windows\Antifurto Relatorio.runtimeconfig.json
+C:\Users\analista.dev\Desktop\Projetos C#\Antifurto Relatorio\Antifurto Relatorio\Antifurto Relatorio\bin\Debug\net6.0-windows\Antifurto Relatorio.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Antifurto Relatorio\Antifurto Relatorio\Antifurto Relatorio\bin\Debug\net6.0-windows\Antifurto Relatorio.pdb
+C:\Users\analista.dev\Desktop\Projetos C#\Antifurto Relatorio\Antifurto Relatorio\Antifurto Relatorio\bin\Debug\net6.0-windows\Oracle.ManagedDataAccess.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Antifurto Relatorio\Antifurto Relatorio\Antifurto Relatorio\bin\Debug\net6.0-windows\System.Diagnostics.PerformanceCounter.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Antifurto Relatorio\Antifurto Relatorio\Antifurto Relatorio\bin\Debug\net6.0-windows\System.DirectoryServices.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Antifurto Relatorio\Antifurto Relatorio\Antifurto Relatorio\bin\Debug\net6.0-windows\System.DirectoryServices.Protocols.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Antifurto Relatorio\Antifurto Relatorio\Antifurto Relatorio\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.Diagnostics.PerformanceCounter.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Antifurto Relatorio\Antifurto Relatorio\Antifurto Relatorio\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.DirectoryServices.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Antifurto Relatorio\Antifurto Relatorio\Antifurto Relatorio\bin\Debug\net6.0-windows\runtimes\linux\lib\net6.0\System.DirectoryServices.Protocols.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Antifurto Relatorio\Antifurto Relatorio\Antifurto Relatorio\bin\Debug\net6.0-windows\runtimes\osx\lib\net6.0\System.DirectoryServices.Protocols.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Antifurto Relatorio\Antifurto Relatorio\Antifurto Relatorio\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.DirectoryServices.Protocols.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Antifurto Relatorio\Antifurto Relatorio\Antifurto Relatorio\obj\Debug\net6.0-windows\Antifurto Relatorio.csproj.CopyComplete
+C:\Users\analista.dev\Desktop\Projetos C#\Antifurto Relatorio\Antifurto Relatorio\Antifurto Relatorio\obj\Debug\net6.0-windows\Antifurto Relatorio.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Antifurto Relatorio\Antifurto Relatorio\Antifurto Relatorio\obj\Debug\net6.0-windows\refint\Antifurto Relatorio.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Antifurto Relatorio\Antifurto Relatorio\Antifurto Relatorio\obj\Debug\net6.0-windows\Antifurto Relatorio.pdb
+C:\Users\analista.dev\Desktop\Projetos C#\Antifurto Relatorio\Antifurto Relatorio\Antifurto Relatorio\obj\Debug\net6.0-windows\Antifurto Relatorio.genruntimeconfig.cache
+C:\Users\analista.dev\Desktop\Projetos C#\Antifurto Relatorio\Antifurto Relatorio\Antifurto Relatorio\obj\Debug\net6.0-windows\ref\Antifurto Relatorio.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Antifurto Relatorio\Antifurto Relatorio\Antifurto Relatorio\bin\Debug\net6.0-windows\ClosedXML.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Antifurto Relatorio\Antifurto Relatorio\Antifurto Relatorio\bin\Debug\net6.0-windows\DocumentFormat.OpenXml.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Antifurto Relatorio\Antifurto Relatorio\Antifurto Relatorio\bin\Debug\net6.0-windows\ExcelNumberFormat.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Antifurto Relatorio\Antifurto Relatorio\Antifurto Relatorio\bin\Debug\net6.0-windows\Irony.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Antifurto Relatorio\Antifurto Relatorio\Antifurto Relatorio\bin\Debug\net6.0-windows\SixLabors.Fonts.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Antifurto Relatorio\Antifurto Relatorio\Antifurto Relatorio\bin\Debug\net6.0-windows\XLParser.dll
