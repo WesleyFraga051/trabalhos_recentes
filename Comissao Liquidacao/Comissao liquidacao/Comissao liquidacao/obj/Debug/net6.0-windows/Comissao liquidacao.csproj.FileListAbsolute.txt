@@ -1,0 +1,34 @@
+C:\Users\analista.dev\Desktop\Projetos C#\Comissao Liquidacao\Comissao liquidacao\Comissao liquidacao\obj\Debug\net6.0-windows\Comissao liquidacao.csproj.AssemblyReference.cache
+C:\Users\analista.dev\Desktop\Projetos C#\Comissao Liquidacao\Comissao liquidacao\Comissao liquidacao\obj\Debug\net6.0-windows\Comissao_liquidacao.Form1.resources
+C:\Users\analista.dev\Desktop\Projetos C#\Comissao Liquidacao\Comissao liquidacao\Comissao liquidacao\obj\Debug\net6.0-windows\Comissao liquidacao.csproj.GenerateResource.cache
+C:\Users\analista.dev\Desktop\Projetos C#\Comissao Liquidacao\Comissao liquidacao\Comissao liquidacao\obj\Debug\net6.0-windows\Comissao liquidacao.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\analista.dev\Desktop\Projetos C#\Comissao Liquidacao\Comissao liquidacao\Comissao liquidacao\obj\Debug\net6.0-windows\Comissao liquidacao.AssemblyInfoInputs.cache
+C:\Users\analista.dev\Desktop\Projetos C#\Comissao Liquidacao\Comissao liquidacao\Comissao liquidacao\obj\Debug\net6.0-windows\Comissao liquidacao.AssemblyInfo.cs
+C:\Users\analista.dev\Desktop\Projetos C#\Comissao Liquidacao\Comissao liquidacao\Comissao liquidacao\obj\Debug\net6.0-windows\Comissao liquidacao.csproj.CoreCompileInputs.cache
+C:\Users\analista.dev\Desktop\Projetos C#\Comissao Liquidacao\Comissao liquidacao\Comissao liquidacao\obj\Debug\net6.0-windows\Comissao liquidacao.sourcelink.json
+C:\Users\analista.dev\Desktop\Projetos C#\Comissao Liquidacao\Comissao liquidacao\Comissao liquidacao\bin\Debug\net6.0-windows\Comissao liquidacao.exe
+C:\Users\analista.dev\Desktop\Projetos C#\Comissao Liquidacao\Comissao liquidacao\Comissao liquidacao\bin\Debug\net6.0-windows\Comissao liquidacao.deps.json
+C:\Users\analista.dev\Desktop\Projetos C#\Comissao Liquidacao\Comissao liquidacao\Comissao liquidacao\bin\Debug\net6.0-windows\Comissao liquidacao.runtimeconfig.json
+C:\Users\analista.dev\Desktop\Projetos C#\Comissao Liquidacao\Comissao liquidacao\Comissao liquidacao\bin\Debug\net6.0-windows\Comissao liquidacao.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Comissao Liquidacao\Comissao liquidacao\Comissao liquidacao\bin\Debug\net6.0-windows\Comissao liquidacao.pdb
+C:\Users\analista.dev\Desktop\Projetos C#\Comissao Liquidacao\Comissao liquidacao\Comissao liquidacao\bin\Debug\net6.0-windows\Oracle.ManagedDataAccess.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Comissao Liquidacao\Comissao liquidacao\Comissao liquidacao\obj\Debug\net6.0-windows\Comissao liquidacao.csproj.CopyComplete
+C:\Users\analista.dev\Desktop\Projetos C#\Comissao Liquidacao\Comissao liquidacao\Comissao liquidacao\obj\Debug\net6.0-windows\Comissao liquidacao.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Comissao Liquidacao\Comissao liquidacao\Comissao liquidacao\obj\Debug\net6.0-windows\refint\Comissao liquidacao.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Comissao Liquidacao\Comissao liquidacao\Comissao liquidacao\obj\Debug\net6.0-windows\Comissao liquidacao.pdb
+C:\Users\analista.dev\Desktop\Projetos C#\Comissao Liquidacao\Comissao liquidacao\Comissao liquidacao\obj\Debug\net6.0-windows\Comissao liquidacao.genruntimeconfig.cache
+C:\Users\analista.dev\Desktop\Projetos C#\Comissao Liquidacao\Comissao liquidacao\Comissao liquidacao\obj\Debug\net6.0-windows\ref\Comissao liquidacao.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Comissao Liquidacao\Comissao liquidacao\Comissao liquidacao\bin\Debug\net6.0-windows\System.Diagnostics.PerformanceCounter.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Comissao Liquidacao\Comissao liquidacao\Comissao liquidacao\bin\Debug\net6.0-windows\System.DirectoryServices.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Comissao Liquidacao\Comissao liquidacao\Comissao liquidacao\bin\Debug\net6.0-windows\System.DirectoryServices.Protocols.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Comissao Liquidacao\Comissao liquidacao\Comissao liquidacao\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.Diagnostics.PerformanceCounter.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Comissao Liquidacao\Comissao liquidacao\Comissao liquidacao\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.DirectoryServices.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Comissao Liquidacao\Comissao liquidacao\Comissao liquidacao\bin\Debug\net6.0-windows\runtimes\linux\lib\net6.0\System.DirectoryServices.Protocols.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Comissao Liquidacao\Comissao liquidacao\Comissao liquidacao\bin\Debug\net6.0-windows\runtimes\osx\lib\net6.0\System.DirectoryServices.Protocols.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Comissao Liquidacao\Comissao liquidacao\Comissao liquidacao\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.DirectoryServices.Protocols.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Comissao Liquidacao\Comissao liquidacao\Comissao liquidacao\bin\Debug\net6.0-windows\ClosedXML.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Comissao Liquidacao\Comissao liquidacao\Comissao liquidacao\bin\Debug\net6.0-windows\DocumentFormat.OpenXml.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Comissao Liquidacao\Comissao liquidacao\Comissao liquidacao\bin\Debug\net6.0-windows\ExcelNumberFormat.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Comissao Liquidacao\Comissao liquidacao\Comissao liquidacao\bin\Debug\net6.0-windows\Irony.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Comissao Liquidacao\Comissao liquidacao\Comissao liquidacao\bin\Debug\net6.0-windows\SixLabors.Fonts.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Comissao Liquidacao\Comissao liquidacao\Comissao liquidacao\bin\Debug\net6.0-windows\XLParser.dll
