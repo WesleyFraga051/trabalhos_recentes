@@ -1,0 +1,34 @@
+C:\Users\analista.dev\Desktop\Projetos C#\Vasilhames\Relatorio Vasilhame\Relatorio Vasilhame\bin\Debug\net6.0-windows\Relatorio Vasilhame.exe
+C:\Users\analista.dev\Desktop\Projetos C#\Vasilhames\Relatorio Vasilhame\Relatorio Vasilhame\bin\Debug\net6.0-windows\Relatorio Vasilhame.deps.json
+C:\Users\analista.dev\Desktop\Projetos C#\Vasilhames\Relatorio Vasilhame\Relatorio Vasilhame\bin\Debug\net6.0-windows\Relatorio Vasilhame.runtimeconfig.json
+C:\Users\analista.dev\Desktop\Projetos C#\Vasilhames\Relatorio Vasilhame\Relatorio Vasilhame\bin\Debug\net6.0-windows\Relatorio Vasilhame.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Vasilhames\Relatorio Vasilhame\Relatorio Vasilhame\bin\Debug\net6.0-windows\Relatorio Vasilhame.pdb
+C:\Users\analista.dev\Desktop\Projetos C#\Vasilhames\Relatorio Vasilhame\Relatorio Vasilhame\bin\Debug\net6.0-windows\ClosedXML.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Vasilhames\Relatorio Vasilhame\Relatorio Vasilhame\bin\Debug\net6.0-windows\DocumentFormat.OpenXml.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Vasilhames\Relatorio Vasilhame\Relatorio Vasilhame\bin\Debug\net6.0-windows\ExcelNumberFormat.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Vasilhames\Relatorio Vasilhame\Relatorio Vasilhame\bin\Debug\net6.0-windows\Irony.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Vasilhames\Relatorio Vasilhame\Relatorio Vasilhame\bin\Debug\net6.0-windows\Oracle.ManagedDataAccess.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Vasilhames\Relatorio Vasilhame\Relatorio Vasilhame\bin\Debug\net6.0-windows\SixLabors.Fonts.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Vasilhames\Relatorio Vasilhame\Relatorio Vasilhame\bin\Debug\net6.0-windows\System.Diagnostics.PerformanceCounter.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Vasilhames\Relatorio Vasilhame\Relatorio Vasilhame\bin\Debug\net6.0-windows\System.DirectoryServices.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Vasilhames\Relatorio Vasilhame\Relatorio Vasilhame\bin\Debug\net6.0-windows\System.DirectoryServices.Protocols.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Vasilhames\Relatorio Vasilhame\Relatorio Vasilhame\bin\Debug\net6.0-windows\XLParser.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Vasilhames\Relatorio Vasilhame\Relatorio Vasilhame\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.Diagnostics.PerformanceCounter.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Vasilhames\Relatorio Vasilhame\Relatorio Vasilhame\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.DirectoryServices.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Vasilhames\Relatorio Vasilhame\Relatorio Vasilhame\bin\Debug\net6.0-windows\runtimes\linux\lib\net6.0\System.DirectoryServices.Protocols.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Vasilhames\Relatorio Vasilhame\Relatorio Vasilhame\bin\Debug\net6.0-windows\runtimes\osx\lib\net6.0\System.DirectoryServices.Protocols.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Vasilhames\Relatorio Vasilhame\Relatorio Vasilhame\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.DirectoryServices.Protocols.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Vasilhames\Relatorio Vasilhame\Relatorio Vasilhame\obj\Debug\net6.0-windows\Relatorio Vasilhame.csproj.AssemblyReference.cache
+C:\Users\analista.dev\Desktop\Projetos C#\Vasilhames\Relatorio Vasilhame\Relatorio Vasilhame\obj\Debug\net6.0-windows\Relatorio_Vasilhame.Form1.resources
+C:\Users\analista.dev\Desktop\Projetos C#\Vasilhames\Relatorio Vasilhame\Relatorio Vasilhame\obj\Debug\net6.0-windows\Relatorio Vasilhame.csproj.GenerateResource.cache
+C:\Users\analista.dev\Desktop\Projetos C#\Vasilhames\Relatorio Vasilhame\Relatorio Vasilhame\obj\Debug\net6.0-windows\Relatorio Vasilhame.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\analista.dev\Desktop\Projetos C#\Vasilhames\Relatorio Vasilhame\Relatorio Vasilhame\obj\Debug\net6.0-windows\Relatorio Vasilhame.AssemblyInfoInputs.cache
+C:\Users\analista.dev\Desktop\Projetos C#\Vasilhames\Relatorio Vasilhame\Relatorio Vasilhame\obj\Debug\net6.0-windows\Relatorio Vasilhame.AssemblyInfo.cs
+C:\Users\analista.dev\Desktop\Projetos C#\Vasilhames\Relatorio Vasilhame\Relatorio Vasilhame\obj\Debug\net6.0-windows\Relatorio Vasilhame.csproj.CoreCompileInputs.cache
+C:\Users\analista.dev\Desktop\Projetos C#\Vasilhames\Relatorio Vasilhame\Relatorio Vasilhame\obj\Debug\net6.0-windows\Relatorio Vasilhame.sourcelink.json
+C:\Users\analista.dev\Desktop\Projetos C#\Vasilhames\Relatorio Vasilhame\Relatorio Vasilhame\obj\Debug\net6.0-windows\Relatori.41A9DBBD.Up2Date
+C:\Users\analista.dev\Desktop\Projetos C#\Vasilhames\Relatorio Vasilhame\Relatorio Vasilhame\obj\Debug\net6.0-windows\Relatorio Vasilhame.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Vasilhames\Relatorio Vasilhame\Relatorio Vasilhame\obj\Debug\net6.0-windows\refint\Relatorio Vasilhame.dll
+C:\Users\analista.dev\Desktop\Projetos C#\Vasilhames\Relatorio Vasilhame\Relatorio Vasilhame\obj\Debug\net6.0-windows\Relatorio Vasilhame.pdb
+C:\Users\analista.dev\Desktop\Projetos C#\Vasilhames\Relatorio Vasilhame\Relatorio Vasilhame\obj\Debug\net6.0-windows\Relatorio Vasilhame.genruntimeconfig.cache
+C:\Users\analista.dev\Desktop\Projetos C#\Vasilhames\Relatorio Vasilhame\Relatorio Vasilhame\obj\Debug\net6.0-windows\ref\Relatorio Vasilhame.dll
